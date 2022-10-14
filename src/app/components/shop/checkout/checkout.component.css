@@ -1,0 +1,42 @@
+ul {
+    margin-top: 5em;
+}
+
+.uk-grid-match {
+    margin-top: 5em;
+}
+
+h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+    cursor: pointer
+}
+
+input {
+    font-size: 1.1em;
+    font-weight: bold;
+     
+}
+
+mat-form-field {
+    margin-left: 0.5em;
+}
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    align-items: flex-start;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+
+  mat-radio-button {
+    margin-bottom: 1.5em;
+  }
+
+  .btn > *+* {
+    margin-left: 0.5em;
+  }

@@ -1,0 +1,48 @@
+
+<nav class="uk-container all-products uk-margin" uk-navbar>
+
+  <div class="uk-navbar-left">
+      <ul class="uk-navbar-nav">
+        <li>
+          <a href="#" class="link produits">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            Tous les produits
+          </a>
+        </li>
+      </ul>
+  </div>
+
+  <div class="uk-navbar-right">
+    <ul class="uk-navbar-nav">
+      <li>
+        <form class="uk-search uk-search-default">
+          <a href="" class="uk-search-icon-flip" uk-search-icon></a>
+          <input class="uk-search-input" type="search" placeholder="Rechercher...">
+        </form>
+      </li>
+    </ul>
+  </div>
+
+</nav>
+
+<div class="uk-container">
+  <div class="pages-vetements uk-margin-top uk-margin-bottom">
+    <div class="cards">
+      <div class="card card-shopping" *ngFor="let product of products">
+        <img  [src]="product.imageURL[0]" alt="" (click)="goToDetailsProduct(product.id)">
+          <div class="description"> 
+            <div class="prix-stars">
+                <span class="title" (click)="goToDetailsProduct(product.id)">{{ product.name }}</span>
+                <span class="prix">{{ (product.price) | currency: 'XOF' }}</span>
+            </div>
+          </div>
+          <button class="uk-button addCart" (click)="goToDetailsProduct(product.id)">Voir l'article</button>
+          <!-- <button class="uk-button addCart">Ajouter au panier</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,54 @@
+
+.container-box-2, .no-cart{
+    background: rgb(255, 255, 255);
+    border-radius: 1rem;
+    padding: 2rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.card-tilte {
+    font-weight: bold;
+}
+
+.uk-image {
+    transition: transform .2s;
+}
+
+.uk-image:hover {
+    transform: scale(1.1);
+}
+
+.no-cart {
+    margin-top: 2rem;
+}
+
+.no-cart-found {
+    display: flex;
+    flex-direction: column;
+}
+
+.no-cart-found img {
+    width: 12rem;
+    height: 6rem;
+    align-items: center;
+    text-align: center;
+}
+
+.addCart {
+    margin-top: 2rem;
+    font-size: 1rem;
+    font-weight: bold !important;
+    border-radius: 5px;
+    background: #15253e;
+    color: #ffffff;
+    font-size: 0.8rem !important;
+}
+  
+.addCart:active {
+    background: #d7d9de93;
+}
+.txt {
+    font-weight: bold !important;
+    color: #15253e;
+}

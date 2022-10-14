@@ -1,0 +1,107 @@
+.uk-navbar-nav a
+{
+  font-size: 0.8rem !important;
+}
+
+.uk-navbar-dropbar{
+    background-color: #f7fbff;
+    border-radius: 5px;
+}
+
+.uk-navbar-dropdown, .uk-navbar-dropdown-grid {
+    background-color: #f7fbff;
+}
+
+.links-categories {
+    font-size: 0.8rem !important;
+    color: #112442;
+    text-transform: capitalize;
+}
+
+.desc {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.uk-text-big {
+  color: #112442;
+  font-size: 1.2rem !important;
+}
+
+.uk-navbar-nav svg
+{
+  height: 1rem !important;
+  width: 1rem !important;
+}
+
+.top
+{
+  margin-top: 1.5rem !important;
+}
+
+.links
+{
+  font-size: 0.9rem !important;
+  margin-top: 2rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.links a
+{
+  text-decoration: none !important;
+  color: #112442 !important;
+}
+
+
+.links svg
+{
+  height: 1rem !important;
+  width: 1rem !important;
+}
+
+.prix {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prix .uk-text {
+  font-size: 1.7rem !important;
+  color: #112442;
+  font-family: Roboto,-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.uk-text {
+  align-items: center
+}
+
+.uk-button {
+  background: #01b3bb;
+  color: #ffffff;
+  border-radius: 3px;
+  display: flex;
+  width: 25rem;
+  justify-content: center;
+  align-items: center
+}
+
+.uk-button .bx {
+  margin-right: 1rem;
+  font-size: 1.5rem !important;
+}
+
+.uk-button:active {
+  background: #046065;
+}
+
+.addCart {
+  font-weight: bold !important;
+  border-radius: 5px;
+  background: #15253e;
+  opacity: 0;
+  width: 100%;
+}
+
+.addCart:active {
+  background: #d7d9de93;
+}

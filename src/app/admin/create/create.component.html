@@ -1,0 +1,204 @@
+<div class="uk-container">
+  <div class="uk-child-width-1-4@m  grid2" uk-grid>
+    <div class="uk-width-3-4">
+      <div class="uk-margin">
+          <span>
+            <li>
+              <div class="uk-accordion-content">
+                <div class="uk-card uk-card-default uk-card-body uk-margin-top">
+                  <form (ngSubmit)="onSubmit()" [formGroup]="addProductForm" novalidate>
+                    
+                    <div class="uk-flex-box">
+                      <div class="uk-margin">
+                        <label class="uk-form-label" for="form-stacked-text">Nom du produit</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" type="text" placeholder="Product Name" formControlName="name">
+                        </div>
+                      </div>
+
+                      <div class="uk-flex uk-flex-between">
+                        <div class="uk-">
+                            <label class="uk-form-label" for="form-stacked-text">Prix du produit</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input"  type="number" placeholder="Prix normal" formControlName="price">
+                            </div>
+                        </div>
+                        <div class="uk-">
+                          <label class="uk-form-label" for="form-stacked-text">Prix solde du produit</label>
+                          <div class="uk-form-controls">
+                              <input class="uk-input" type="number" placeholder="Prix solde" formControlName="price_solde">
+                          </div>
+                        </div>
+
+                        <div class="uk-">
+                          <label class="uk-form-label" for="form-stacked-text">Categories</label>
+                          <div class="uk-form-controls">
+                              <select class="uk-select uk-input" formControlName="category">
+                                  <option value="Informatique">Informatique</option>
+                                  <option value="Téléphone">Téléphone</option>
+                                  <option value="Pharmacie">Pharmacie</option>
+                                  <option value="Sport">Sport</option>
+                                  <option value="Supermarché">Supermarché</option>
+                                  <option value="Nourriture">Nourriture</option>
+                                  <option value="Vêtements">Vêtements</option>
+                                  <option value="Modehomme">Mode Homme</option>
+                                  <option value="Modefemme">Mode Femme</option>
+                              </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="uk-flex uk-flex-between uk-margin">
+
+                        <div class="uk-">
+                          <label class="uk-form-label" for="form-stacked-text">Marques</label>
+                          <div class="uk-form-controls">
+                              <select class="uk-select uk-input" formControlName="marque">
+                                  <option value=""></option>
+                                  <option value="Iphone">Iphone</option>
+                                  <option value="Samsung">Samsung</option>
+                                  <option value="Techno">Techno</option>
+                                  <option value="Infinix">Infinix</option>
+                                  <option value="Itel">Itel</option>
+                                  <option value="Nike">Nike</option>
+                                  <option value="Addidas">Addidas</option>
+                                  <option value="HP">HP</option>
+                                  <option value="Lenono">Lenono</option>
+                              </select>
+                          </div>
+                        </div>
+
+                        <div class="uk-">
+                          <label class="uk-form-label" for="form-stacked-text">Taille</label>
+                          <div class="uk-form-controls">
+                              <select class="uk-select uk-input" formControlName="taille">
+                                  <option value=""></option>
+                                  <option value="XS">XS</option>
+                                  <option value="S">S</option>
+                                  <option value="M">M</option>
+                                  <option value="L">L</option>
+                                  <option value="XL">XL</option>
+                                  <option value="XXL">XXL</option>
+                              </select>
+                          </div>
+                        </div>
+
+                        <div class="uk-">
+                          <label class="uk-form-label" for="form-stacked-text">Numéro</label>
+                          <div class="uk-form-controls">
+                              <select class="uk-select uk-input" formControlName="numero">
+                                  <option value=""></option>
+                                  <option value="34">34</option>
+                                  <option value="35">35</option>
+                                  <option value="36">36</option>
+                                  <option value="37">37</option>
+                                  <option value="38">38</option>
+                                  <option value="39">39</option>
+                                  <option value="40">40</option>
+                                  <option value="41">41</option>
+                                  <option value="42">42</option>
+                                  <option value="43">43</option>
+                                  <option value="44">44</option>
+                              </select>
+                          </div>
+                        </div>
+
+                        <div class="uk-">
+                          <label class="uk-form-label" for="form-stacked-text">Couleurs</label>
+                          <div class="uk-form-controls">
+                              <select class="uk-select uk-input" formControlName="couleur">
+                                  <option value=""></option>
+                                  <option value="Blanc">Blanc</option>
+                                  <option value="Noir">Noir</option>
+                                  <option value="Rouge">Rouge</option>
+                                  <option value="Jaune">Jaune</option>
+                                  <option value="Jaune">Or</option>
+                                  <option value="Orange">Orange</option>
+                                  <option value="Vert">Vert</option>
+                                  <option value="Gris">Gris</option>
+                                  <option value="Bleu">Bleu</option>
+                                  <option value="Bleu">Violet</option>
+                              </select>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="uk-margin dowlaoder">
+                      <label class="uk-form-label" for="form-stacked-text">Ajouter une image du produit</label>
+                        <div class="uk-form-controls input-img">
+                            <input class="uk-input" type="file"  #selectImage (change)="selectFiles($event)">
+                          </div>
+                        <div class="uk-form-controls icons">
+                          <i (click)="selectImage.click()" class='bx bx-image-add'></i>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-stacked-text">Description du produit</label>
+                        <div class="uk-form-controls">
+                            <textarea class="uk-textarea" rows="5" placeholder="Description du Produit" formControlName="description"></textarea>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                      <label class="uk-form-label" for="form-stacked-text">Fiche technique du produit</label>
+                      <div class="uk-form-controls">
+                          <textarea class="uk-textarea" rows="10" placeholder="Fiche technique" formControlName="fichetech"></textarea>
+                      </div>
+                    </div>
+                    <div class="uk-margin">
+                      <button class="uk-button btn-send uk-text-bold uk-margin-top">
+                        Ajouter le produit
+                      </button>
+                    </div>
+
+                </form>
+                </div>
+              </div>
+          </li>
+          </span>
+      </div>
+    </div>
+    <div class="image-details">
+      <div class="uk-margin imgSelected">
+        <img *ngFor="let imageUrl of imagesUrl" [src]="imageUrl">
+      </div>
+      <div class="image-infos">
+        <span class="uk-margin">{{ addProductForm.value.name }}</span>
+        <br>
+        <div class="uk-category">
+          <span class="uk-label uk-label-success uk-">{{ addProductForm.value.category }}</span>
+          <span class="uk-label uk-label-success uk-">{{ addProductForm.value.marque }}</span>
+        </div>
+        <div class="uk-category">
+          <span>Taille</span>
+          <span class="">{{ addProductForm.value.taille }}</span>
+        </div>
+        
+        <div class="uk-category">
+          <span>Numero</span>
+          <span class="">{{ addProductForm.value.numero }}</span>
+        </div>
+
+        <div class="uk-category">
+          <span>Couleur</span>
+          <span class="">{{ addProductForm.value.couleur }}</span>
+        </div>
+
+        <h3 class="uk-margin">{{ addProductForm.value.price | currency: 'XOF'}}</h3>
+        <div class="uk-margin">
+            <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+                <h3 class="uk-card-title">Description</h3>
+                <p>{{ addProductForm.value.description }}</p>
+            </div>
+        </div>
+        <div class="uk-margin">
+          <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+            <h3 class="uk-card-title">Fiche Technique</h3>
+            <p>{{ addProductForm.value.fichetech }}</p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

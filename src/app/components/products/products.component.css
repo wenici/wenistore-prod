@@ -1,0 +1,111 @@
+.first-shop
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card
+{
+  cursor: pointer;
+}
+
+.card {
+  border-radius: 14px;
+  color: white;
+  padding: 0.6rem;
+  height: auto;
+  transition: .4s;
+}
+
+.card:hover {
+  box-shadow: #1450a573 0px 6px 15px;
+  transition: .4s;
+}
+
+
+/* Top categories */
+.first-shop
+{
+  margin-top: 3rem;
+}
+
+.cards-shop .card img {
+  border-radius: 14px;
+  width: 100%;
+  height: 100px;
+}
+
+a
+{
+  color: #000;
+  font-size: 0.81rem;
+}
+
+.top-categories
+{
+  margin-top: 5rem;
+}
+
+.all-products
+{
+  margin-top: 5rem !important;
+}
+
+.link
+{
+  font-size: 0.9rem !important;
+  text-transform: capitalize;
+}
+.produits {
+  font-weight: bolder;
+  color: #000000;
+}
+
+.link svg
+{
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+.uk-navbar-nav
+{
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between !important;
+}
+
+input
+{
+  border-radius: 20px !important;
+  padding-left: 1rem !important;
+  background: #f8f8f8;
+font-size: 0.8rem !important;
+}
+
+
+.stars
+{
+  color: #f6b01e;
+}
+
+.addCart {
+  font-weight: bold !important;
+  border-radius: 5px;
+  background: #15253e;
+  opacity: 0;
+  width: 100%;
+  font-size: 0.8rem !important;
+}
+
+.addCart:active {
+  background: #d7d9de93;
+}
+
+.card:hover .addCart {
+  opacity: 1;
+}
+
+.prix-stars .title {
+  cursor: pointer;
+}

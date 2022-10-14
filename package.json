@@ -21,8 +21,12 @@
     "@angular/platform-browser": "^14.2.6",
     "@angular/platform-browser-dynamic": "^14.2.6",
     "@angular/router": "^14.2.6",
+    "boxicons": "^2.1.4",
     "jquery": "^3.6.1",
+    "lord-icon-element": "^3.4.4",
+    "lottie-web": "^5.9.6",
     "rxjs": "~7.5.0",
+    "sweetalert2": "^11.5.1",
     "tslib": "^2.3.0",
     "uikit": "^3.15.10",
     "zone.js": "~0.11.4"

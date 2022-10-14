@@ -1,0 +1,218 @@
+
+<div class="container">
+    <div class="uk-container uk-text-center uk-card-default uk-card no-cart" *ngIf="shopping.length === 0">
+        <div  class="no-cart">
+            <div class="uk-margin no-cart-found">
+                <span><img src="assets/img/nocart.png" alt=""></span>
+                <span class="txt">Votre panier est vide !</span>
+                <span>
+                    <a href="/"  class="uk-button addCart">CONTINUER VOS ACHATS</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="uk-container container-box-0" *ngIf="shopping.length > 0">
+        <div class="msg-nbre">
+        Votre panier contient <span>{{ shopping?.length }}</span> article(s)
+        </div>
+    </div>
+    <div class="uk-container container-box-1" *ngIf="shopping.length > 0">
+    <div class="container-panier box-1">
+        <div class="articles"></div>
+        <div class="group-prix">
+            <div class="quantity">Quantité</div>
+            <div class="unity-prix">Prix Unitaire</div>
+            <div class="sous-total">Sous Total</div>
+        </div>
+    </div>
+    <div class="container-panier uk-margin box-2 uk-border-rounded uk-card-default" *ngFor="let cart of shopping;">
+        <div class="articles">
+            <img [src]="cart.productData.imageURL" (click)="goToDetailsProduct(cart.id)">
+            <div class="desc-product">
+                <span class="desc"> <a (click)="goToDetailsProduct(cart.id)"> {{ cart.productData.name }} </a></span>
+                <div class="delete">
+                    <a  (click)="deleteProduct(cart.id)">
+                        <span uk-icon="trash"></span>
+                        <span>Supprimer</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <span class="diviser-icon"></span>
+        <div class="group-prix">
+            <div class="quantity">
+                <svg class="w-6 h-6" (click)="inCrementProduct(cart.id)" uk-tooltip="Diminuer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span>{{ cart.quantity }}</span>
+                <svg class="w-6 h-6" uk-tooltip="Augmenter" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <div class="unity-prix">
+                <span class="prix">{{ cart.productData.price }}</span>
+                <span class="devise">FCFA</span>
+            </div>
+            <div class="sous-total">
+                <span class="prix">85,570</span>
+                <span class="devise">FCFA</span>
+            </div>
+        </div>
+    </div>
+   <div class="total-row">
+        <label>Total:</label>
+        <div class="total-prix">
+            <span class="prix">171,140</span>
+            <span class="devise">FCFA</span>
+        </div>
+    </div>
+    </div>
+    <div class="valid-buy" *ngIf="shopping.length > 0">
+        <div class="home">
+            <a href="/">continuer vos achats</a>
+        </div>
+        <div class="buy-ok">
+            <a href="/modepayement">finaliser l'achat</a>
+        </div>
+    </div>
+    <div class="uk-container container-box-2 uk-card-default uk-card">
+        <div class="uk-margin">
+        <h4 class="uk-margin-remove card-tilte">Articles consultés récemment</h4>
+        </div>
+
+        <div class="cards">
+        <div class="card card-shopping">
+            <img src="assets/img/pharmacie.png" alt="" class="uk-image">
+            <div class="description">
+                <div class="prix-stars">
+                    <span class="title">Comprimés</span>
+                    <span class="prix">9 000 F</span>
+                    <div class="stars">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-shopping">
+            <img src="assets/img/pizza.png" alt="" class="uk-image">
+            <div class="description">
+                <div class="prix-stars">
+                    <span class="title">Pizza</span>
+                    <span class="prix">9 000 F</span>
+                    <div class="stars">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-shopping">
+            <img src="assets/img/samsungA12.jpeg" alt="" class="uk-image">
+            <div class="description">
+                <div class="prix-stars">
+                    <span class="title">Samsung A12</span>
+                    <span class="prix">9 000 F</span>
+                    <div class="stars">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-shopping">
+            <img src="assets/img/pagne.jpeg" alt="" class="uk-image">
+            <div class="description">
+                <div class="prix-stars">
+                    <span class="title">Pagne</span>
+                    <span class="prix">9 000 F</span>
+                    <div class="stars">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-shopping">
+            <img src="assets/img/pizza3.png" alt="" class="uk-image">
+            <div class="description">
+                <div class="prix-stars">
+                    <span class="title">Pizza</span>
+                    <span class="prix">9 000 F</span>
+                    <div class="stars">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+    </div>
+    <div class="uk-container container-box-2 uk-card-default uk-card">
+        <div class="uk-margin">
+        <h4 class="uk-margin-remove card-tilte">Récommandés pour vous</h4>
+        </div>
+
+        <div class="cards">
+        <div class="card card-shopping">
+            <img src="assets/img/pharmacie.png" alt="" class="uk-image">
+            <div class="description">
+                <div class="prix-stars">
+                    <span class="title">Comprimés</span>
+                    <span class="prix">9 000 F</span>
+                    <div class="stars">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-shopping">
+            <img src="assets/img/pizza.png" alt="" class="uk-image">
+            <div class="description">
+                <div class="prix-stars">
+                    <span class="title">Pizza</span>
+                    <span class="prix">9 000 F</span>
+                    <div class="stars">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-shopping">
+            <img src="assets/img/samsungA12.jpeg" alt="" class="uk-image">
+            <div class="description">
+                <div class="prix-stars">
+                    <span class="title">Samsung A12</span>
+                    <span class="prix">9 000 F</span>
+                    <div class="stars">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-shopping">
+            <img src="assets/img/pagne.jpeg" alt="" class="uk-image">
+            <div class="description">
+                <div class="prix-stars">
+                    <span class="title">Pagne</span>
+                    <span class="prix">9 000 F</span>
+                    <div class="stars">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-shopping">
+            <img src="assets/img/pizza3.png" alt="" class="uk-image">
+            <div class="description">
+                <div class="prix-stars">
+                    <span class="title">Pizza</span>
+                    <span class="prix">9 000 F</span>
+                    <div class="stars">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+    </div>
+</div>
+
+<app-footer></app-footer>

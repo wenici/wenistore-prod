@@ -1,0 +1,54 @@
+.uk-section img {
+  background: white;
+  padding-top: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  width: 150px;
+  border-radius: 10px;
+}
+
+h3 {
+  font-family: 'Poppins';
+  font-size: 1.3rem;
+}
+
+.un:hover h3,
+.deux:hover h3 {
+  text-decoration: overline;
+  cursor: pointer;
+}
+
+ul li a {
+  color: rgb(230, 230, 230);
+  font-size: 0.9rem;
+}
+
+ul li a:hover {
+  color: rgb(255, 255, 255);
+}
+
+ul li {
+  list-style-type: none;
+  color: #222;
+}
+
+textarea {
+  width: 100%;
+  height: 90px;
+}
+
+
+form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.uk-section {
+  background-color: #01BCBD;
+}
+
+.panier .prix {
+  font-size: 2rem;
+}

@@ -1,0 +1,118 @@
+span {
+  font-family: Roboto, Courier, monospace;
+  font-size: 18px;
+}
+.nav-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+  background: #01bcbd;
+}
+
+.header {
+  background: #01bcbd;
+}
+
+.menu-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-flex span {
+  margin-left: 1em;
+}
+
+.menu-flex span a {
+  color: aliceblue;
+  /* font-weight: bolder; */
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.menu-flex span a:hover {
+  color: rgba(240, 248, 255, 0.712);
+}
+
+
+.tilte {
+  font-size: 20px;
+  color:rgb(255, 255, 255)
+}
+
+form input, button {
+  border-radius: 5px
+}
+
+.uk-flex button {
+  margin-left: 10px;
+  width:120px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #15253e;
+  color:rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+.menu-deroulant
+{
+  border-radius: 5px;
+}
+
+.login
+{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+
+.signout
+{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+
+.uk-inline>button
+{
+  border: none !important;
+  background: none !important;
+  color:rgb(255, 255, 255);
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.uk-inline>button:hover
+{
+  opacity:0.6;
+}
+
+.menu-deroulant .login
+{
+  background-color: #15253e;
+  border-radius: 5px;
+}
+
+.menu-deroulant .login a {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.menu-deroulant button:hover
+{
+  background-color: #e63946;
+  color:rgb(255, 255, 255);
+}
+
+.menu-deroulant button:active
+{
+  background-color: #FFFFFF;
+}
+
+.uk-label {
+  font-size: 0.7rem;
+}

@@ -1,0 +1,86 @@
+
+<div class="header uk-position-z-index" uk-sticky="top: !.uk-height-large; offset: 0">
+  <div class="nav-flex uk-container navbar">
+    <a href="acceuil">  <img src="assets/img/logo-weni.png" class="nav-left" alt=""> </a>
+    <div class="uk-search">
+      <form class="uk-flex">
+        <input class="uk-input uk-width-1-1" type="text" placeholder="Rechercher...">
+        <button class="uk-button uk-button-secondary">Rechercher</button>
+      </form>
+    </div>
+    <div class="menu-flex">
+      <div class="uk-inline" *ngIf="!isAuthenticated()">
+        <button class="" type="button">
+          <span class="uk-margin-small-right" uk-icon="user"></span>
+          Se connecter
+          <span class="uk-margin-small-right" uk-icon="triangle-down"></span>
+        </button>
+        <div class="menu-deroulant" uk-dropdown>
+          <ul class="uk-nav uk-dropdown-nav">
+            <li>
+              <a href="#">
+              <span class="uk-margin-small-right" uk-icon="bag"></span>
+              Mes commandes
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="uk-margin-small-right" uk-icon="heart"></span>
+                Liste des favoris
+              </a>
+            </li>
+            <li class="uk-nav-divider"></li>
+            <li class="login">
+              <a href="login" class="uk-button">Connexion</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+        <div class="uk-inline" *ngIf="isAuthenticated()">
+          <!-- <lord-icon src="https://cdn.lordicon.com/yvrjxxqj.json" trigger="loop" colors="primary:#47d9c7" state="loop" style="width:32px;height:32px"></lord-icon> -->
+          <span class="uk-label uk-label-success">En ligne</span>
+          <button class="" type="button">
+            <span class="uk-margin-small-right" uk-icon="user"></span>
+            Bonjour,
+            <span class="uk-margin-small-right" uk-icon="triangle-down"></span>
+          </button>
+          <div class="menu-deroulant" uk-dropdown>
+            <ul class="uk-nav uk-dropdown-nav">
+              <li>
+                <a href="#">
+                <span class="uk-margin-small-right" uk-icon="user"></span>
+                Mon profil
+              </a></li>
+              <li>
+                <a href="#">
+                <span class="uk-margin-small-right" uk-icon="bag"></span>
+                Mes commandes
+                </a></li>
+              <li>
+                <a href="#">
+                <span class="uk-margin-small-right" uk-icon="mail"></span>
+                Boîte de reception
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="uk-margin-small-right" uk-icon="heart"></span>
+                  Liste des favoris
+                </a>
+              </li>
+              <li class="uk-nav-divider"></li>
+              <li class="signout">
+                <button type="button" class="uk-button" (click)="logout()">Déconnexion</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <span>
+            <a href="shop">
+              <span class="uk-margin-small-right" uk-icon="cart"></span>
+              Panier
+            </a>
+        </span>
+    </div>
+  </div>
+</div>
