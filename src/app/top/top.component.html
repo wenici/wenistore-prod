@@ -1,12 +1,74 @@
-<div class="uk-container">
+<!-- <div class="uk-container">
     <app-sidebar></app-sidebar>
     <div class="box-top">
-        <app-top-fun></app-top-fun>
-        <app-top-informatique></app-top-informatique>
-        <app-top-mode-femme></app-top-mode-femme>
-        <app-top-mode-homme></app-top-mode-homme>
-        <app-top-soin-beaute></app-top-soin-beaute>
-        <app-top-supermarche></app-top-supermarche>
+        <span class="uk-width-1-1 span-box uk-margin-small-bottom uk-align-left">Top Fun</span>
+        <div class="uk-container">
+            <div class="pages-vetements uk-margin-top uk-margin-bottom">
+              <div class="cards">
+                <div class="card card-shopping" *ngFor="let product of products | slice:0:6">
+                  <img  [src]="product.imageURL[0]" alt="" (click)="goToDetailsProduct(product.id)">
+                    <div class="description"> 
+                      <div class="prix-stars">
+                          <span class="title" (click)="goToDetailsProduct(product.id)">{{ product.name }}</span>
+                          <span class="prix">{{ (product.price) | currency: 'XOF' }}</span>
+                      </div>
+                    </div>
+                    <button class="uk-button uk-button-small" (click)="onAddToShoppingCart(product, userID)">
+                      <i class='bx bxs-cart-add'></i>
+                      Ajouter au panier
+                    </button>
+                </div>
+              </div>
+            </div>
+          </div>
     </div>
+</div> -->
+<div class="uk-container">
+  <app-sidebar></app-sidebar>
+  <div class="p-4 max-w-5xl content-center  grid gap-4 md:grid-cols-4 xl:grid-cols-6 sm:grid-cols-3 sm:p-8" *ngFor="let product of products">
+    <div class="h-16 bg-blue-500">
+      <img  [src]="product.imageURL[0]" alt="" (click)="goToDetailsProduct(product.id)">
+          <div class="description"> 
+            <div class="prix-stars">
+                <span class="title" (click)="goToDetailsProduct(product.id)">{{ product.name }}</span>
+                <span class="prix">{{ (product.price) | currency: 'XOF' }}</span>
+            </div>
+          </div>
+          <button class="uk-button uk-button-small" (click)="onAddToShoppingCart(product, userID)">
+            <i class='bx bxs-cart-add'></i>
+            Ajouter au panier
+          </button>
+    </div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+    <div class="h-16 bg-blue-500"></div>
+  </div>
 </div>
+
+
 <app-footer></app-footer>

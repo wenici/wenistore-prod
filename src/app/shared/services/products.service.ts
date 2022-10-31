@@ -14,14 +14,18 @@ export class ProductsService {
     
     constructor(private dbstore: AngularFirestore, private router: Router) {
       this.productCollection = this.dbstore.collection('products', (ref) => 
-        ref.orderBy('name', 'desc')
+        ref.orderBy('category', 'desc')
       );
     }
 
     addProduct = (product: Product) => this.productCollection.add(product);
 
     getProducts() {
-      return this.dbstore.collection('products').snapshotChanges();
+      return this.dbstore.collection('products', (ref) =>ref.orderBy('price', 'desc')).snapshotChanges();
+    }
+
+    getByPriceProducts() {
+      return this.dbstore.collection('products', (ref) => ref.orderBy('price', 'desc')).snapshotChanges();
     }
 
     getDetailProduct(productId: string): Observable<any> {

@@ -22,6 +22,12 @@ export class UserService {
     this.userCollection = this.dbstore.collection('users');
   }
 
+  addToShop(product: Product, user: User){
+    const productFavorites = this.userCollection.doc(product.id);
+    const userDoc = this.userCollection.doc(user.id);
+    userDoc.collection('shopping').add(productFavorites);
+  }
+
   newUser(user: User): Promise<void> {
     const defautCentreInteret = {
       categoryName: 'Vêtements',

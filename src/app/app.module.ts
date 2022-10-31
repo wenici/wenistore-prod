@@ -1,7 +1,7 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TopModule } from './top/top.module';
+import { TopModule } from '../app/top/top.module';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
@@ -41,9 +41,11 @@ import { CheckoutComponent } from './components/shop/checkout/checkout.component
 import { OrdersComponent } from './components/shop/orders/orders.component';
 import { UserProfilImgComponent } from './auth/user-profil-img/user-profil-img.component';
 import { AllComponent } from './admin/all/all.component';
+import { ProductsService } from './shared/services/products.service';
+import { ShoppingCardService } from './shared/services/shopping-card.service';
 
 @NgModule({
-  declarations: [		
+  declarations: [
     AppComponent,
     HeaderComponent,
     UpdateProductComponent,
@@ -79,7 +81,7 @@ import { AllComponent } from './admin/all/all.component';
     AngularFireDatabaseModule,
     AngularFireStorageModule
   ],
-  providers: [ Title, { provide: LOCALE_ID, useValue: 'fr', }, AuthService],
+  providers: [ Title, { provide: LOCALE_ID, useValue: 'fr', }, AuthService, ProductsService, ShoppingCardService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

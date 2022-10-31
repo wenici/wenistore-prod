@@ -38,16 +38,7 @@ body {
     border-radius: 30px;
   }
   
-  .navbar img {
-    background: white;
-    margin: 5px;
-    padding-top: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
-    width: 120px;
-    border-radius: 10px;
-    /* margin-left: 40px; */
-  }
+
   
   .down-navbar .categories {
     display: flex;
@@ -465,14 +456,6 @@ body {
     color: #FFFFFF;
   }
   
-  .menu {
-    border: none;
-    background-color: #01BCBD;
-  }
-  
-  .menu > span {
-    color: #FFFFFF;
-  }
   
   
   @media (max-width: 960px) {
@@ -578,4 +561,7 @@ body {
   
   html, body { height: 100%; }
   body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-  
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+  @tailwind screens;

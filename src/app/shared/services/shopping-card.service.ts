@@ -30,7 +30,7 @@ export class ShoppingCardService {
   }
 
   addToMyCart(product: Product, userID: string, qteProduct: number): Promise<void> {
-    const productDoc = this.productsCollection.doc(product.id);
+    const productDoc = this.dbstore.collection('products').doc(product.id);
     productDoc.update({ quantity: qteProduct });
     const userDoc = this.dbstore.firestore.collection('users').doc(userID)
     const userShoppingProduct = userDoc.collection('shopping');
