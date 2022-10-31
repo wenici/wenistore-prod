@@ -12,11 +12,8 @@ a
 
 .card {
   border-radius: 14px;
-  color: white;
-  padding: 0.6rem;
   height: auto;
   transition: .4s;
-  box-shadow: #1450a50a 0px 6px 15px;
 }
 
 .card:hover {
@@ -27,13 +24,7 @@ a
 .top .card{
   border-radius: 14px;
   color: white;
-  padding: 0.6rem;
   height: auto;
-  transition: .4s;
-}
-
-.top .card:hover {
-  box-shadow: #1450a573 0px 6px 15px;
   transition: .4s;
 }
 

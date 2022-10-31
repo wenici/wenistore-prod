@@ -206,8 +206,9 @@ body {
   }
   
   .cards .card-shopping .prix-stars span{
-    font-size: 14px;
-    color: #000;
+    color: #112442;
+    font-size: 12px;
+    font-weight: 600;
   }
   
   .cards .card-shopping .prix-stars .title {
@@ -219,18 +220,23 @@ body {
     font-weight: 600;
   }
   
-  .cards .card-shopping .prix-stars a {
-    color: #112442;
-    font-size: 12px;
-    font-weight: 600;
-  }
-  
-  
   .cards-shop {
     margin: 0 auto;
     display: grid;
     grid-gap: 1.8rem;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  @media (max-width: 1240px) {
+    .cards-shop {
+      grid-gap: 1rem;
+    }
+  }
+
+  @media (max-width: 1216px) {
+    .cards .card-shopping .prix-stars span{
+      font-size: 10px;
+    }
   }
   
   .cards-shop .card {
@@ -242,12 +248,6 @@ body {
     justify-content: space-between;
   }
   
-  .cards-shop .card span {
-    border-radius: 14px;
-    width: 100%;
-    height: 140px;
-  }
-  
   .cards-shop .card-shopping .prix-stars {
     display: flex;
     align-items: center;
@@ -256,19 +256,13 @@ body {
   .cards-shop .card-shopping .prix-stars svg {
     color: #01BCBD;
   }
-  
-  
-  .cards-shop .card-shopping .prix-stars span{
-    font-size: 14px;
-    color: #000;
-  }
-  
+
   .cards-shop .card-shopping .prix-stars .prix {
     color: #01BCBD;
     font-weight: 600;
   }
   
-  .cards-shop .card-shopping .prix-stars a {
+  .cards-shop .card-shopping .prix-stars span {
     color: #112442;
     font-size: 0.8rem;
     font-weight: 600;

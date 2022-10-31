@@ -25,48 +25,65 @@
 </div> -->
 <div class="uk-container">
   <app-sidebar></app-sidebar>
-  <div class="p-4 max-w-5xl content-center  grid gap-4 md:grid-cols-4 xl:grid-cols-6 sm:grid-cols-3 sm:p-8" *ngFor="let product of products">
-    <div class="h-16 bg-blue-500">
-      <img  [src]="product.imageURL[0]" alt="" (click)="goToDetailsProduct(product.id)">
-          <div class="description"> 
-            <div class="prix-stars">
-                <span class="title" (click)="goToDetailsProduct(product.id)">{{ product.name }}</span>
-                <span class="prix">{{ (product.price) | currency: 'XOF' }}</span>
-            </div>
-          </div>
-          <button class="uk-button uk-button-small" (click)="onAddToShoppingCart(product, userID)">
-            <i class='bx bxs-cart-add'></i>
-            Ajouter au panier
-          </button>
+  <div class="bg-gray-50 drop-shadow-md  my-8">
+   <div>
+    <span>Nouveauté</span>
+    <div class="uk-container">
+    <div uk-slider>
+       <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+           <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-4@s uk-child-width-1-5@m">
+               <li>
+                   <img src="images/slider1.jpg" width="200" height="300" alt="">
+                   <div class="uk-position-center uk-panel"><h1>1</h1></div>
+               </li>
+               <li>
+                   <img src="images/slider2.jpg" width="200" height="300" alt="">
+                   <div class="uk-position-center uk-panel"><h1>2</h1></div>
+               </li>
+               <li>
+                   <img src="images/slider3.jpg" width="200" height="300" alt="">
+                   <div class="uk-position-center uk-panel"><h1>3</h1></div>
+               </li>
+               <li>
+                   <img src="images/slider4.jpg" width="200" height="300" alt="">
+                   <div class="uk-position-center uk-panel"><h1>4</h1></div>
+               </li>
+               <li>
+                   <img src="images/slider5.jpg" width="200" height="300" alt="">
+                   <div class="uk-position-center uk-panel"><h1>5</h1></div>
+               </li>
+               <li>
+                   <img src="images/slider1.jpg" width="200" height="300" alt="">
+                   <div class="uk-position-center uk-panel"><h1>6</h1></div>
+               </li>
+               <li>
+                   <img src="images/slider2.jpg" width="200" height="300" alt="">
+                   <div class="uk-position-center uk-panel"><h1>7</h1></div>
+               </li>
+               <li>
+                   <img src="images/slider3.jpg" width="200" height="300" alt="">
+                   <div class="uk-position-center uk-panel"><h1>8</h1></div>
+               </li>
+               <li>
+                   <img src="images/slider4.jpg" width="200" height="300" alt="">
+                   <div class="uk-position-center uk-panel"><h1>9</h1></div>
+               </li>
+               <li>
+                   <img src="images/slider5.jpg" width="200" height="300" alt="">
+                   <div class="uk-position-center uk-panel"><h1>10</h1></div>
+               </li>
+           </ul>
+   
+           <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+           <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+   
+       </div>
+   
+       <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+   
+   </div>
     </div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
-    <div class="h-16 bg-blue-500"></div>
+   </div>
   </div>
 </div>
 

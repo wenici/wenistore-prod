@@ -3,6 +3,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TopModule } from '../app/top/top.module';
 
+import { SwiperModule } from 'swiper/angular'
+
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
@@ -69,6 +71,7 @@ import { ShoppingCardService } from './shared/services/shopping-card.service';
   imports: [
     TopModule,
     FormsModule,
+    SwiperModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     BrowserModule,
