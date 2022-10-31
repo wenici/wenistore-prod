@@ -45,3 +45,53 @@ a
 .uk-image:hover {
   transform: scale(0.9);
 }
+
+.mega-menu {
+  width: 300px;
+}
+
+.mega-menu button {
+  padding-top: 0.5rem/* 8px */;
+  padding-bottom: 0.5rem/* 8px */;
+  padding-left: 1rem/* 16px */;
+  padding-right: 1rem/* 16px */;
+}
+
+.uk button:hover .img {
+  display:  inline-block;
+}
+
+@media (max-width: 996px) {
+  .mega-menu {
+    width: 250px;
+  }
+
+  .mega-menu button {
+    font-size: 12px;
+  }
+
+}
+
+@media (max-width: 920px) {
+
+  .mega-menu {
+    margin-top: 1rem/* 16px */;
+    width: 200px;
+  }
+  
+  
+  .mega-menu button {
+    padding-top: 0.2rem/* 8px */;
+    padding-bottom: 0.2rem/* 8px */;
+    padding-left: 0.8rem/* 16px */;
+    padding-right: 0.8rem/* 16px */;
+    font-size: 10px;
+  }
+
+}
+
+@media (max-width: 702px){
+  .mega-menu {
+    margin-top: 0rem/* 16px */;
+  }
+}
