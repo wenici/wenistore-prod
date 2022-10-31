@@ -116,36 +116,7 @@ body {
   }
   
   
-  .down-navbar .categories  a {
-    margin: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  
-  
-  .down-navbar .categories .links {
-    display: flex;
-    max-width: 250px;
-    width: 100%;
-    flex-direction: column;
-  }
-  
-  
-  .down-navbar .categories .links a {
-    text-decoration: none;
-    font-size: 18px;
-    color: rgb(0, 0, 0);
-    padding: 10px;
-    background: #CCFFFF 0% 0% no-repeat padding-box;
-    border-radius: 10px;
-  }
-  
-  
-  .down-navbar .categories .links a > *+* {
-    margin-left: 20px;
-  }
-  
-  
+
   .link {
     font-size: 16px;
     color: #01BCBD;
