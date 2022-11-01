@@ -23,3 +23,37 @@
         margin-right: 2rem;
     }
 }
+
+.drop-shadow-md >div  {
+    padding: 1rem;
+}
+
+.grid ul li {
+    margin-left: 0.8rem
+}
+
+.grid ul li p{
+    font-size: 0.8rem;
+    font-family: Poppins;
+    padding-bottom: 1rem;
+}
+
+.uk-overlay {
+    height: 100px;
+    padding-bottom: 1rem;
+}
+
+.uk-overlay h3 {
+    color: #01bcbd;
+    font-weight: bolder;
+}
+
+span {
+    color:#1d3557;
+    font-size: 1.2rem;
+    font-family: "Poppins";
+}
+
+.slider-box {
+    margin-top: 2rem;
+}
