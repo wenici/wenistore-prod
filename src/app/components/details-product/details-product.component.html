@@ -1,112 +1,63 @@
-<div class="uk-container">
+<div class="uk-container mt-10">
     <!-- Begin card boutique en avant -->
   <div class="uk-position-relative">
   
-    <nav class="" uk-navbar="dropbar: true">
-  
-        <div class="uk-navbar-center">
-  
-            <ul class="uk-navbar-nav">
-                <li>
-                    <a href="#" class="uk-remove-margin links-categories">
-                    Supermarché
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                    </svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="links-categories">
-                        Shopping femme
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="links-categories">
-                        Style homme
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                <a href="#" class="links-categories">
-                    Informatique
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </a>
-                </li>
-                <li>
-                <a href="#" class="links-categories">
-                    Electronique
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </a>
-                </li>
-                <li>
-                <a href="#" class="links-categories">
-                    Jouets et Jeux videos
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </a>
-                </li>
-                <li>
-                <a href="#" class="links-categories">
-                    Sport et fitness
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </a>
-                </li>
-            </ul>
-  
-        </div>
-  
-    </nav>
-  
-    <div class="uk-navbar-dropbar"></div>
-  
-  </div>
-
-  <hr class="uk-divider-icon">
-  
-  <div class="uk-container panier" *ngIf="product">
-    <div id="modal-center" class="uk-flex-top" uk-modal>
-      <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-          <button class="uk-modal-close-default" type="button" uk-close></button>
-          <img [src]="(product | async)?.imageURL" class="nav-left">
-      </div>
-    </div>
-    <div class="uk-child-width-1-2@s" uk-grid>
-      <div>
-        <a href="#modal-center" uk-toggle>
-          <img [src]="(product | async)?.imageURL" class="nav-left" alt="">
-        </a>
-      </div>
-      <div>
-        <div class="uk-dark uk-padding">
-          <h3> {{ (product | async)?.name }}</h3>
-          <hr class="uk-divider-icon">
-          <div class="uk-flex prix">
-            <p class="uk-text">
-              <span>{{ (product | async)?.price | currency: 'XOF' }} </span>
-            </p>
+    <nav class="flex" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+            <a href="#" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">Projects</a>
           </div>
-          <hr class="uk-divider-icon">
-          <button class="uk-button uk-button-default uk-form-width-medium">
-            <!-- <button class="uk-button uk-button-default uk-width-1-1" *ngIf="userID === (product | async)?.productData.id"> -->
-              <i class='bx bxs-cart-add'></i>
-            AJOUTER AU PANIER
-          </button>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">{{ (product | async)?.name }}</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    
+    <div class="uk-container panier" *ngIf="product">
+        <div id="modal-center" class="uk-flex-top" uk-modal>
+          <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+              <button class="uk-modal-close-default" type="button" uk-close></button>
+              <img [src]="(product | async)?.imageURL" class="nav-left">
+          </div>
         </div>
-      </div>
+        <div class="uk-child-width-1-2@s" uk-grid>
+          <div>
+            <a href="#modal-center" uk-toggle>
+              <img [src]="(product | async)?.imageURL" class="nav-left" alt="">
+            </a>
+          </div>
+          <div>
+            <div class="uk-dark uk-padding">
+              <h3> {{ (product | async)?.name }}</h3>
+              <hr class="uk-divider-icon">
+              <div class="uk-flex prix">
+                <p class="uk-text">
+                  <span>{{ (product | async)?.price | currency: 'XOF' }} </span>
+                </p>
+              </div>
+              <hr class="uk-divider-icon">
+              <button class="uk-button uk-button-default uk-form-width-medium">
+                <!-- <button class="uk-button uk-button-default uk-width-1-1" *ngIf="userID === (product | async)?.productData.id"> -->
+                  <i class='bx bxs-cart-add'></i>
+                AJOUTER AU PANIER
+              </button>
+            </div>
+          </div>
+        </div>
     </div>
-  </div>
 
   <div class="uk-container uk-margin">
     <dl class="uk-description-list">
@@ -264,5 +215,6 @@
     </div>
   </div>
   
+</div>
 </div>
 <app-footer></app-footer>
