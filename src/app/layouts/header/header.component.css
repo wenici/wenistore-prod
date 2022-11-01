@@ -17,7 +17,11 @@ nav {
   margin-left: 0.8rem
 }
 
-.blox .btn svg {
+.count-nbre {
+  font-size: 0.5rem;
+}
+
+.blox .btn div {
   margin-right: 0.3rem
 }
 
@@ -30,12 +34,20 @@ nav {
   display: none;
 }
 
+.font-semibold {
+  color: #01bcbd;
+}
+
+.block {
+  text-decoration: none
+}
+
 @media (max-width: 784px) {
   .toogle {
     display: flex;
   }
 
-  .toogle > svg {
+  .toogle > div {
     margin-left: 0.8rem;
   }
 
@@ -44,14 +56,17 @@ nav {
   }
 }
 
-@media (max-width: 464px) {
-  .grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+@media (max-width: 639px) {
+  .toogle-hidden {
+    display: block;
   }
 }
 
-@media (max-width: 370px) {
-  .grid {
+@media (max-width: 485px) {
+  .grid-box {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+
+
