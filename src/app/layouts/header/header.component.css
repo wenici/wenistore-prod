@@ -82,3 +82,13 @@ nav {
 .input-search input:focus {
   border: #15253e;
 }
+
+.btn {
+  color: #15253e;
+  text-decoration: none;
+}
+
+.drawer-swipe input{
+  margin-left: 1.5rem/* 8px */;
+  margin-right: 1.5rem/* 8px */;
+}

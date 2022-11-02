@@ -17,14 +17,12 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 })
 export class HeaderComponent implements OnInit {
   
-
   userID: string | undefined;
   quantity: number = 0;
   products: Product[] | undefined;
-  filterByName: string = '';
-  // userID = '';
+  filterByName: any;
   currentUserData?: User | undefined;
-  userData!: User;
+
   constructor(
     public router: Router,
     private authService: AuthService,
@@ -40,12 +38,14 @@ export class HeaderComponent implements OnInit {
     });
    }
 
+   
+   ngOnInit() {}
+   
    goToDetailsProduct(productId?: string): void {
-    this.router.navigate(['product-details', productId]);
-    console.log(productId);
-  }
-
-  ngOnInit() {}
+     this.router.navigate(['product-details', productId]);
+     console.log(productId);
+   }
+   
   logout = () => this.authService.logout();
 
   isAuthenticated = () => this.authService.isLoggedin();

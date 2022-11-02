@@ -7,18 +7,16 @@
     <div class="menu">
 
       <div>
-        <form class="flex items-center">
           <div class="relative w-full input-search">
               <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                   <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
               </div>
-              <input type="text" id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Rechercher un article" required="">
+              <input type="text" [(ngModel)]="filterByName"  id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Rechercher un article" required="">
           </div>
-        </form>
       </div>
 
       <div class="connect-block blox">
-        <button type="submit" id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="inline-flex items-center btn  ml-2 text-sm font-medium focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <button type="submit" id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="inline-flex items-center btn  ml-2 text-sm font-medium">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
           Se connecter
           <i class='bx bx-chevron-down' ></i>
@@ -26,16 +24,15 @@
       </div>
 
       <div class="panier-block blox">
-        <button type="submit" class="inline-flex relative items-center btn  ml-2 text-sm font-medium focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <a href="/shop" type="submit" class="inline-flex relative items-center btn  ml-2 text-sm font-medium">
           <div class="relative">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
             <div class="inline-flex count-nbre absolute -top-2 -right-2 justify-center items-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white dark:border-gray-900">20</div>  
           </div>
           Panier
-        </button>
+        </a>
       </div>
-
-      
+ 
     </div>
     <div class="toogle">
       <div>
@@ -79,6 +76,13 @@
   <div class="p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700" data-drawer-toggle="drawer-swipe">
      <span class="absolute w-8 h-1 -translate-x-1/2 bg-gray-300 rounded-lg top-3 left-1/2 dark:bg-gray-600"></span>
   </div>
+    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
+    <div class="relative">
+        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+            <svg aria-hidden="true" class="w-3 h-3 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </div>
+        <input type="search" id="default-search" class="block  p-2 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required>
+    </div>
   <div id="mega-menu-full-dropdown" class="mt-1 bg-white border-gray-200 shadow-sm border-y dark:bg-gray-800 dark:border-gray-600">
     <div class="py-5 px-4 mx-auto max-w-screen-xl text-gray-900 dark:text-white md:px-6">
         <div class="grid grid-cols-3 grid-box">
@@ -135,7 +139,7 @@
       </div>
       <div class="pl-3 w-full">
         <div class="text-black  text-sm mb-1.5 dark:text-gray-400"> {{ product.name }}  </div>
-          <div>{{ product.description | slice:0:40 }}...</div>
+          <div>{{ product.description | slice:0:40  }}...</div>
           <div class="text-xs"> {{ product.category }}</div>
       </div>
     </div>
