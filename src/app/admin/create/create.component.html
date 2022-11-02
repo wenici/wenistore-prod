@@ -190,6 +190,7 @@
             <div class="uk-card uk-card-default uk-card-hover uk-card-body">
                 <h3 class="uk-card-title">Description</h3>
                 <p>{{ addProductForm.value.description }}</p>
+                <angular-editor [placeholder]="'Enter text here...'" formControlName="description"></angular-editor>
             </div>
         </div>
         <div class="uk-margin">

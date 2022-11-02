@@ -21,7 +21,7 @@ export class ProductsService {
     addProduct = (product: Product) => this.productCollection.add(product);
 
     getProducts() {
-      return this.dbstore.collection('products', (ref) =>ref.orderBy('price', 'desc')).snapshotChanges();
+      return this.dbstore.collection('products').snapshotChanges();
     }
 
     getByPriceProducts() {

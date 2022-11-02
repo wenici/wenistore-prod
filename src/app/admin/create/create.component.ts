@@ -8,8 +8,6 @@ import {
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { url } from 'inspector';
-// import * as $ from 'jquery'
 
 @Component({
   selector: 'app-create',
@@ -47,10 +45,9 @@ export class CreateComponent implements OnInit {
       numero: [''],
     });
   }
-  resetForm(product: Product): void {
-    
-  }
+
   ngOnInit(): void {}
+  
   get name(): AbstractControl | null {
     return this.addProductForm.get('name');
   }
