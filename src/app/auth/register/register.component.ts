@@ -69,7 +69,11 @@ export class RegisterComponent implements OnInit {
           nom: this.registerForm.get('firstName')?.value,
           email: this.registerForm.get('email')?.value,
           createdAd: new Date(),
-          role: 'client',
+          role: {
+            subscriber: true,
+            client: true,
+            admin: false,
+          },
         };
          this.userService.newUser(user);
         //  authResult.user?.sendEmailVerification();

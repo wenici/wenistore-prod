@@ -1,21 +1,32 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+
 import Swal from 'sweetalert2';
+
+import { User } from 'src/app/models/user.model';
 import * as firebase from 'firebase/compat/app';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 type UserCredential = Promise<firebase.default.auth.UserCredential>;
+
+
+import { Observable, of} from 'rxjs';
+import  { switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
 
+  userRole!: AngularFirestoreCollection<User>;
+  
   userData: any; 
-  useR$: any;
+  user$!: Observable<User>;
 
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
+    public dbstore: AngularFirestore
   ) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
@@ -27,6 +38,13 @@ export class AuthService {
         JSON.parse(localStorage.getItem('user')!);
       }
     });
+    this.afAuth.authState.pipe(switchMap((user) => {
+      if(user) {
+        return this.dbstore.doc<User>(`users/${user.uid}`).valueChanges()
+      } else {
+        return of(null);
+      }
+    }))
   }
 
   createNewUser(email: string, password: string): UserCredential {

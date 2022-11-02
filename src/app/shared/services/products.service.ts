@@ -8,7 +8,7 @@ import { Product } from 'src/app/models/product.model';
   providedIn: 'root'
 })
 export class ProductsService {
-    [x: string]: any;
+    // [x: string]: any;
 
     productCollection: AngularFirestoreCollection<Product>;
     

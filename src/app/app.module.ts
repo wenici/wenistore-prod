@@ -35,6 +35,8 @@ import { defineLordIconElement } from 'lord-icon-element';
 import lottie from 'lottie-web';
 import { AuthService } from './shared/services/auth/auth.service';
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 import { MaterialModule } from './layouts/material.module';
 import { ShopComponent } from './components/shop/shop.component';
 import { DeliveryComponent } from './components/shop/checkout/delivery/delivery.component';
@@ -63,7 +65,7 @@ import { ShoppingCardService } from './shared/services/shopping-card.service';
     OrdersComponent,
     UserProfilImgComponent,
     AllComponent,
-    CreateComponent
+    CreateComponent,
    ],
    entryComponents: [
     LoginComponent
@@ -72,6 +74,7 @@ import { ShoppingCardService } from './shared/services/shopping-card.service';
     TopModule,
     FormsModule,
     SwiperModule,
+    Ng2SearchPipeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     BrowserModule,

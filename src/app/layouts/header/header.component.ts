@@ -7,6 +7,8 @@ import { UserService } from 'src/app/shared/services/database/user.service';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase/app';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Product } from 'src/app/models/product.model';
+import { ProductsService } from 'src/app/shared/services/products.service';
 
 @Component({
   selector: 'app-header',
@@ -16,10 +18,32 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class HeaderComponent implements OnInit {
   
 
-  userID = '';
+  userID: string | undefined;
+  quantity: number = 0;
+  products: Product[] | undefined;
+  filterByName: string = '';
+  // userID = '';
   currentUserData?: User | undefined;
   userData!: User;
-  constructor( private authService: AuthService ) { }
+  constructor(
+    public router: Router,
+    private authService: AuthService,
+    public productService: ProductsService
+  ) {
+    this.productService.getProducts().subscribe((res) => {
+      this.products = res.map((e) => {
+        return {
+          id: e.payload.doc.id,
+          ...(e.payload.doc.data() as Product),
+        };
+      });
+    });
+   }
+
+   goToDetailsProduct(productId?: string): void {
+    this.router.navigate(['product-details', productId]);
+    console.log(productId);
+  }
 
   ngOnInit() {}
   logout = () => this.authService.logout();

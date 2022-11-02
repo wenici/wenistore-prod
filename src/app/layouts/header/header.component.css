@@ -69,4 +69,16 @@ nav {
 }
 
 
+#dropdownNotification .text-black {
+  color:#01bcbd;
+  font-weight: bold;
+}
+#dropdownNotification .text-xs {
+  color: #15253e;
+  font-weight: bold;
+}
 
+
+.input-search input:focus {
+  border: #15253e;
+}

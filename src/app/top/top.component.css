@@ -57,3 +57,38 @@ span {
 .slider-box {
     margin-top: 2rem;
 }
+
+
+@media (max-width: 644px) {
+
+    .uk-overlay h3 {
+        font-weight: bolder;
+        font-size: .9rem;
+    }
+
+    .uk-overlay p {
+        font-size: .8rem;
+    }
+}
+
+@media (max-width: 596px) {
+
+    .uk-overlay h3 {
+        font-weight: bolder;
+        font-size: .7rem;
+    }
+
+    .uk-overlay p {
+        font-size: .6rem;
+        margin-left: -2rem;
+    }
+}
+
+/* @media (max-width: 554px) {
+    .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+} */
+mat-grid-tile {
+    background-color: #1d3557
+}
