@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   
   userID: string | undefined;
   quantity: number = 0;
-  products: Product[] | undefined;
+  products!: Product[];
   filterByName: any;
   currentUserData?: User | undefined;
 
@@ -37,8 +37,7 @@ export class HeaderComponent implements OnInit {
       });
     });
    }
-
-   
+  
    ngOnInit() {}
    
    goToDetailsProduct(productId?: string): void {
@@ -49,4 +48,5 @@ export class HeaderComponent implements OnInit {
   logout = () => this.authService.logout();
 
   isAuthenticated = () => this.authService.isLoggedin();
+
 }

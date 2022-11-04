@@ -49,10 +49,9 @@
                 </p>
               </div>
               <hr class="uk-divider-icon">
-              <button class="uk-button uk-button-default uk-form-width-medium">
-                <!-- <button class="uk-button uk-button-default uk-width-1-1" *ngIf="userID === (product | async)?.productData.id"> -->
-                  <i class='bx bxs-cart-add'></i>
-                AJOUTER AU PANIER
+              <button class="uk-button uk-button-default uk-form-width-medium" (click)="saveCartLocation()">
+               <i class='bx bxs-cart-add'></i>
+                J'achète le produit
               </button>
             </div>
           </div>

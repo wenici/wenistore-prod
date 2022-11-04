@@ -15,6 +15,7 @@ export class TopComponent implements OnInit {
 
   title = 'Weni Store - Acceuil';
   products!: Product[];
+  allProducts!: Product[];
   userID!: string;
   quantity: number = 0;
 
@@ -22,8 +23,11 @@ export class TopComponent implements OnInit {
     private titleService:Title, 
     public productService: ProductsService,
     public shopCartService: ShoppingCardService,
+    private activeRoute: ActivatedRoute,
     public router: Router
-  ) { }
+  ) { 
+
+  }
 
   ngOnInit() {
     this.titleService.setTitle(this.title);
@@ -41,6 +45,14 @@ export class TopComponent implements OnInit {
     this.router.navigate(['product-details', productId]);
     console.log(productId);
   }
+
+  setData(product: Product) {
+    // let data = this.allProducts;
+    const added = localStorage.setItem('product', JSON.stringify(product.id));
+    console.log(added)
+  }
+
+
   
   onAddToShoppingCart(product: Product, userID: string): void {
     const qteProduct = (product.quantity += 1);

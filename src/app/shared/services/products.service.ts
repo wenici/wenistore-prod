@@ -3,7 +3,8 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
-
+import { take, map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +18,7 @@ export class ProductsService {
       );
     }
 
+
     addProduct = (product: Product) => this.productCollection.add(product);
 
     getProducts() {
@@ -27,10 +29,15 @@ export class ProductsService {
       return this.dbstore.collection('products', (ref) => ref.orderBy('price', 'desc')).snapshotChanges();
     }
 
+    getByCategoryProducts() {
+      return this.dbstore.collection('products', (ref) => ref.orderBy('category', 'desc')).snapshotChanges();
+    }
+
     getDetailProduct(productId: string): Observable<any> {
       return this.productCollection.doc(productId).valueChanges();
     }
-    goToDetailsProduct(productId?: string): void {
+
+    goToDetailsProduct(productId: string) {
       this.router.navigate(['product-details', productId]);
       console.log(productId);
         }
