@@ -41,18 +41,6 @@ export class TopComponent implements OnInit {
     });
   }
 
-  goToDetailsProduct(productId?: string): void {
-    this.router.navigate(['product-details', productId]);
-    console.log(productId);
-  }
-
-  setData(product: Product) {
-    // let data = this.allProducts;
-    const added = localStorage.setItem('product', JSON.stringify(product.id));
-    console.log(added)
-  }
-
-
   
   onAddToShoppingCart(product: Product, userID: string): void {
     const qteProduct = (product.quantity += 1);

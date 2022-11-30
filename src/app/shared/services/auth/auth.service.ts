@@ -19,8 +19,8 @@ import  { switchMap } from 'rxjs';
 export class AuthService {
 
   userRole!: AngularFirestoreCollection<User>;
-  
-  userData: any; 
+
+  userData: any;
   user$!: Observable<User>;
 
   constructor(
@@ -52,6 +52,7 @@ export class AuthService {
   }
 
   loginUser(email: string, password: string): UserCredential {
+    localStorage.getItem('user');
     return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
