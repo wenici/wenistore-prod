@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './../../shared/services/database/user.service';
-import { PasswordValidationService } from '../../shared/services/auth/password-validation.service';
 import { AbstractControl, UntypedFormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { User } from '../../models/user.model';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -18,7 +16,7 @@ export class RegisterComponent implements OnInit {
   title = 'Weni Store - Inscription';
   isValidForm = false;
   isLoggedin: boolean = false;
-  userData: any; 
+  userData: any;
   hide = true;
 
   constructor(
@@ -33,6 +31,7 @@ export class RegisterComponent implements OnInit {
     {
       firstName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.maxLength(10)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     }
   )
@@ -41,6 +40,9 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('firstName');
   }
 
+  get phone(): AbstractControl | null {
+    return this.registerForm.get('phone');
+  }
   get email(): AbstractControl | null {
     return this.registerForm.get('email');
   }
@@ -68,6 +70,8 @@ export class RegisterComponent implements OnInit {
           id: authResult.user?.uid,
           nom: this.registerForm.get('firstName')?.value,
           email: this.registerForm.get('email')?.value,
+          password: this.registerForm.get('password')?.value,
+          phone: this.registerForm.get('phone')?.value,
           createdAd: new Date(),
           role: {
             subscriber: true,

@@ -7,14 +7,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthGuardService implements CanActivate {
-  constructor(private afAuth: AngularFireAuth, private router: Router) {}
+  constructor(private auth: AngularFireAuth, private router: Router) {}
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
     return new Promise((resolve) => {
-      this.afAuth.onAuthStateChanged((user) => {
-        if (user) {
-          this.router.navigate(['']);
+      this.auth.onAuthStateChanged((userAuth) => {
+        if (!userAuth) {
           resolve(false);
+          this.router.navigate(['login'])
         } else {
           resolve(true);
         }

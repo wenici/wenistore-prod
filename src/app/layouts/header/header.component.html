@@ -1,147 +1,430 @@
 <!-- <a href="acceuil" class="header-img">  <img src="assets/img/logo-weni.png" class="nav-left" alt=""> </a> -->
-<div class="uk-container" >
-  <nav  class="px-2 sm:px-4 py-2.5 dark:bg-gray-900  z-20 top-0 left-0  border-gray-200 dark:border-gray-600">
-    
-    <a href="acceuil" class="header-img w-24 h-auto">  <img src="assets/img/logo-weni.png" class="nav-left" alt=""> </a>
+<div class="uk-container">
+  <nav
+    class="px-2 sm:px-4 py-2.5 dark:bg-gray-900 z-20 top-0 left-0 border-gray-200 dark:border-gray-600"
+  >
+    <a href="acceuil" class="header-img w-24 h-auto">
+      <img src="assets/img/logo-weni.png" class="nav-left" alt="" />
+    </a>
 
     <div class="menu">
-
-      <div>
-          <div class="relative w-full input-search">
-              <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                  <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
-              </div>
-              <input type="text" [(ngModel)]="filterByName"  id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Rechercher un article" required="">
-          </div>
-      </div>
-
-      <div class="connect-block blox">
-        <button type="submit" id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="inline-flex items-center btn  ml-2 text-sm font-medium">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+      <div class="connect-block blox" routerLink="login" *ngIf="!isAuthenticated()">
+        <button
+          type="submit"
+          class="inline-flex items-center btn ml-2 text-sm font-medium"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            ></path>
+          </svg>
           Se connecter
-          <i class='bx bx-chevron-down' ></i>
+        </button>
+      </div>
+      <!-- user name -->
+      <div class="connect-block blox" *ngIf="isAuthenticated()">
+        <button
+          type="submit"
+          data-dropdown-toggle="dropdownInformation"
+          class="inline-flex items-center btn ml-2 text-sm font-medium"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            ></path>
+          </svg>
+          Bonjour  {{ userData?.nom}}
+          <i class="bx bx-chevron-down"></i>
         </button>
       </div>
 
-      <div class="panier-block blox">
-        <a href="/shop" type="submit" class="inline-flex relative items-center btn  ml-2 text-sm font-medium">
+      <!-- number of proucts in user shopping cart  -->
+      <div *ngIf="isAuthenticated()" class="panier-block blox" data-drawer-target="drawer-right-example" data-drawer-show="drawer-right-example" data-drawer-placement="right" aria-controls="drawer-right-example">
+        <a
+          type="submit"
+          class="inline-flex relative items-center btn ml-2 text-sm font-medium"
+        >
           <div class="relative">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-            <div class="inline-flex count-nbre absolute -top-2 -right-2 justify-center items-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white dark:border-gray-900">20</div>  
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              ></path>
+            </svg>
+            <div
+              class="inline-flex count-nbre absolute -top-2 -right-2 justify-center items-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white dark:border-gray-900"
+            >
+              {{ cartsUser?.length }}
+            </div>
           </div>
           Panier
         </a>
       </div>
- 
+      <div *ngIf="!isAuthenticated()" class="panier-block blox" data-drawer-target="drawer-right-example" data-drawer-show="drawer-right-example" data-drawer-placement="right" aria-controls="drawer-right-example">
+        <a
+          type="submit"
+          class="inline-flex relative items-center btn ml-2 text-sm font-medium"
+        >
+          <div class="relative">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              ></path>
+            </svg>
+            <div
+              class="inline-flex count-nbre absolute -top-2 -right-2 justify-center items-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white dark:border-gray-900"
+            >
+             {{ cartItems }}
+            </div>
+          </div>
+          Panier
+        </a>
+      </div>
     </div>
     <div class="toogle">
       <div>
-        <svg class="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+        <svg
+          class="w-6 h-6 cursor-pointer"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+          ></path>
+        </svg>
       </div>
       <div class="inline-flex relative items-center">
-        <svg class="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-        <div class="inline-flex absolute -top-2.5 -right-2.5 justify-center items-center w-6 h-6 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white dark:border-gray-900">20</div>
+        <svg
+          class="w-6 h-6 cursor-pointer"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+          ></path>
+        </svg>
+        <div
+          class="inline-flex absolute -top-2.5 -right-2.5 justify-center items-center w-6 h-6 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white dark:border-gray-900"
+        >
+          {{ cartItems }}
+        </div>
       </div>
       <div class="hidden toogle-hidden">
-        <svg data-drawer-target="drawer-swipe" data-drawer-show="drawer-swipe" data-drawer-placement="bottom" data-drawer-edge="true" data-drawer-edge-offset="bottom-[60px]" aria-controls="drawer-swipe" aria-hidden="true" class="w-6 h-6 cursor-pointer" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+        <svg
+          data-drawer-target="drawer-swipe"
+          data-drawer-show="drawer-swipe"
+          data-drawer-placement="bottom"
+          data-drawer-edge="true"
+          data-drawer-edge-offset="bottom-[60px]"
+          aria-controls="drawer-swipe"
+          aria-hidden="true"
+          class="w-6 h-6 cursor-pointer"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
       </div>
     </div>
   </nav>
-    <!-- Dropdown menu -->
-  <div id="dropdownInformation" class="hidden z-50 w-44 mt-5 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-    <div class="py-3 px-4 text-sm text-gray-900 dark:text-white">
-      <div>Bonnie Green</div>
-      <div class="font-medium truncate">name@flowbite.com</div>
-    </div>
-    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformationButton">
-      <li>
-        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-      </li>
-      <li>
-        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-      </li>
-      <li>
-        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-      </li>
-    </ul>
-    <div class="py-1">
-      <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-    </div>
-  </div>
+  <!-- Dropdown menu -->
+<div id="dropdownInformation" *ngIf="isAuthenticated()" class="z-10 hidden w-48 bg-white rounded shadow dark:bg-gray-700">
+  <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownBgHoverButton">
+    <li>
+      <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+        <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <label for="checkbox-item-4" class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Mon compte</label>
+      </div>
+    </li>
+    <li>
+      <div>
+        <a
+          type="submit"
+          class="inline-flex relative items-center btn ml-2 text-sm font-medium"
+        >
+          <div class="relative">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              ></path>
+            </svg>
+            <div
+              class="inline-flex count-nbre absolute -top-2 -right-2 justify-center items-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white dark:border-gray-900"
+            >
+              {{ cartsUser?.length }}
+            </div>
+          </div>
+          <span class="mx-3">Mon panier</span>
+        </a>
+      </div>
+    </li>
+    <li>
+      <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+        <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7.875 14.25l1.214 1.942a2.25 2.25 0 001.908 1.058h2.006c.776 0 1.497-.4 1.908-1.058l1.214-1.942M2.41 9h4.636a2.25 2.25 0 011.872 1.002l.164.246a2.25 2.25 0 001.872 1.002h2.092a2.25 2.25 0 001.872-1.002l.164-.246A2.25 2.25 0 0116.954 9h4.636M2.41 9a2.25 2.25 0 00-.16.832V12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 12V9.832c0-.287-.055-.57-.16-.832M2.41 9a2.25 2.25 0 01.382-.632l3.285-3.832a2.25 2.25 0 011.708-.786h8.43c.657 0 1.281.287 1.709.786l3.284 3.832c.163.19.291.404.382.632M4.5 20.25h15A2.25 2.25 0 0021.75 18v-2.625c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125V18a2.25 2.25 0 002.25 2.25z" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+          <label for="checkbox-item-5" class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Mes commandes</label>
+        </div>
+    </li>
+    <li>
+      <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+        <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+          <label for="checkbox-item-6" class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Boîte de reception</label>
+        </div>
+    </li>
+    <li>
+      <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+        <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <label for="checkbox-item-7" class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Mes favoris</label>
+      </div>
+    </li>
+    <li>
+      <div class="flex items-center p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-600 btn-logout" (click)="logout()">
+        <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <label for="checkbox-item-8" class="w-full ml-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Déconnexion</label>
+      </div>
+    </li>
+  </ul>
+</div>
+
 
 </div>
 
 <!-- drawer component -->
-<div id="drawer-swipe" class="fixed z-40 w-full overflow-y-auto bg-white border-t border-gray-200 rounded-t-lg dark:border-gray-700 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-swipe-label">
-  <div class="p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700" data-drawer-toggle="drawer-swipe">
-     <span class="absolute w-8 h-1 -translate-x-1/2 bg-gray-300 rounded-lg top-3 left-1/2 dark:bg-gray-600"></span>
+<div
+  id="drawer-swipe"
+  class="fixed z-40 w-full overflow-y-auto bg-white border-t border-gray-200 rounded-t-lg dark:border-gray-700 dark:bg-gray-800"
+  tabindex="-1"
+  aria-labelledby="drawer-swipe-label"
+>
+  <div
+    class="p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700"
+    data-drawer-toggle="drawer-swipe"
+  >
+    <span
+      class="absolute w-8 h-1 -translate-x-1/2 bg-gray-300 rounded-lg top-3 left-1/2 dark:bg-gray-600"
+    ></span>
   </div>
-  <div id="mega-menu-full-dropdown" class="mt-1 bg-white border-gray-200 shadow-sm border-y dark:bg-gray-800 dark:border-gray-600">
-    <div class="py-5 px-4 mx-auto max-w-screen-xl text-gray-900 dark:text-white md:px-6">
-        <div class="grid grid-cols-3 grid-box">
-          <a href="#" class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
-              <div class="font-semibold">Supermarché</div>
-              <span class="text-sm font-light text-gray-500 dark:text-gray-400">Vente au détail, des produits alimentaires et de grande consommation.</span>
-          </a>
-          <a href="#" class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
-              <div class="font-semibold">Maison et bureau</div>
-              <span class="text-sm font-light text-gray-500 dark:text-gray-400">Le magasin de meuble ici. trouve tout sur les meubles</span>
-          </a>
-          <a href="#" class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
-              <div class="font-semibold">Téléphones et Tablettes</div>
-              <span class="text-sm font-light text-gray-500 dark:text-gray-400">Modèles & accessoires de tablettes et téléphones mobiles.</span>
-          </a>
-          <a href="#" class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
-              <div class="font-semibold">Informatique</div>
-              <span class="text-sm font-light text-gray-500 dark:text-gray-400">Ordinateurs portables, PC-Imprimantes, disque dur, encres, ...</span>
-          </a>
-          <a href="#" class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
-              <div class="font-semibold">Produits de bébés</div>
-              <span class="text-sm font-light text-gray-500 dark:text-gray-400">Acheter des articles de tous genres pour vos bébés</span>
-          </a>
-          <a href="#" class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
-              <div class="font-semibold">Beauté et Hygiène</div>
-              <span class="text-sm font-light text-gray-500 dark:text-gray-400">Des maquillages, soins de la peau, les soins capillaires, outils de coiffure et ...</span>
-          </a>
-          <a href="#" class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
-              <div class="font-semibold">Mode Femme</div>
-              <span class="text-sm font-light text-gray-500 dark:text-gray-400">Chaussures, vêtements au meilleurs prix pour les femmes</span>
-          </a>
-          <a href="#" class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
-              <div class="font-semibold">Mode Homme</div>
-              <span class="text-sm font-light text-gray-500 dark:text-gray-400">Chaussures, vêtements au meilleurs prix pour les hommes</span>
-          </a>
-          <a href="#" class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
-              <div class="font-semibold">Autres Categories</div>
-              <span class="text-sm font-light text-gray-500 dark:text-gray-400">Découvrez d'autres catégories d'articles pouvant vous intéresser</span>
-          </a>
+  <div
+    id="mega-menu-full-dropdown"
+    class="mt-1 bg-white border-gray-200 shadow-sm border-y dark:bg-gray-800 dark:border-gray-600"
+  >
+    <div
+      class="py-5 px-4 mx-auto max-w-screen-xl text-gray-900 dark:text-white md:px-6"
+    >
+      <div class="grid grid-cols-3 grid-box">
+        <a
+          href="#"
+          class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+        >
+          <div class="font-semibold">Supermarché</div>
+          <span class="text-sm font-light text-gray-500 dark:text-gray-400"
+            >Vente au détail, des produits alimentaires et de grande
+            consommation.</span
+          >
+        </a>
+        <a
+          href="#"
+          class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+        >
+          <div class="font-semibold">Maison et bureau</div>
+          <span class="text-sm font-light text-gray-500 dark:text-gray-400"
+            >Le magasin de meuble ici. trouve tout sur les meubles</span
+          >
+        </a>
+        <a
+          href="#"
+          class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+        >
+          <div class="font-semibold">Téléphones et Tablettes</div>
+          <span class="text-sm font-light text-gray-500 dark:text-gray-400"
+            >Modèles & accessoires de tablettes et téléphones mobiles.</span
+          >
+        </a>
+        <a
+          href="#"
+          class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+        >
+          <div class="font-semibold">Informatique</div>
+          <span class="text-sm font-light text-gray-500 dark:text-gray-400"
+            >Ordinateurs portables, PC-Imprimantes, disque dur, encres,
+            ...</span
+          >
+        </a>
+        <a
+          href="#"
+          class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+        >
+          <div class="font-semibold">Produits de bébés</div>
+          <span class="text-sm font-light text-gray-500 dark:text-gray-400"
+            >Acheter des articles de tous genres pour vos bébés</span
+          >
+        </a>
+        <a
+          href="#"
+          class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+        >
+          <div class="font-semibold">Beauté et Hygiène</div>
+          <span class="text-sm font-light text-gray-500 dark:text-gray-400"
+            >Des maquillages, soins de la peau, les soins capillaires, outils de
+            coiffure et ...</span
+          >
+        </a>
+        <a
+          href="#"
+          class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+        >
+          <div class="font-semibold">Mode Femme</div>
+          <span class="text-sm font-light text-gray-500 dark:text-gray-400"
+            >Chaussures, vêtements au meilleurs prix pour les femmes</span
+          >
+        </a>
+        <a
+          href="#"
+          class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+        >
+          <div class="font-semibold">Mode Homme</div>
+          <span class="text-sm font-light text-gray-500 dark:text-gray-400"
+            >Chaussures, vêtements au meilleurs prix pour les hommes</span
+          >
+        </a>
+        <a
+          href="#"
+          class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+        >
+          <div class="font-semibold">Autres Categories</div>
+          <span class="text-sm font-light text-gray-500 dark:text-gray-400"
+            >Découvrez d'autres catégories d'articles pouvant vous
+            intéresser</span
+          >
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
+
+<!-- drawer component -->
+<div id="drawer-right-example" class="fixed z-40 h-screen p-4 overflow-y-auto bg-white w-80 dark:bg-gray-800 transition-transform right-0 top-0 translate-x-full" tabindex="-1" aria-labelledby="drawer-right-label">
+  <form action="#" class="mb-6">
+    <div class="title-cart">
+      <span class="my-3 text-xl">Votre panier</span>
+      <span class="my-3">{{ totalQty }} article(s) au total</span>
+    </div>
+    <div *ngIf="cartsUser?.length == 0" class="m-5 flex justify-center">
+      <div>
+        <span class="w-20 h-20 bg-slate-100">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+          </svg>
+        </span>
+        <span>Votre panier est vide</span>
+      </div>
+    </div>
+    <div *ngIf="cartsUser?.length > 0">
+      <div class="mb-3" *ngFor="let cart of cartsUser">
+        <div class="bg-slate-100 rounded-lg">
+          <div class="flex items-center space-x-4 relative">
+            <div class="flex-shrink-0">
+                <img class="w-24 h-24 rounded-lg" src="{{ cart.productData.imageURL }}" alt="Neil image">
+            </div>
+            <div class="flex-1 min-w-0">
+              <span>{{ cart.createdAt.toDate() | date:'medium' }}</span>
+                <p class="text-sm pt-2 font-medium text-gray-900 truncate dark:text-white">
+                  {{ cart.productData.name }}
+                </p>
+                <p class="text-sm price-cart  truncate dark:text-gray-400">
+                  <strong>{{ cart.productData.price | currency: 'XOF'}}</strong>
+                  <span style="color:black"> x {{ cart.productData.quantity }}</span>
+                </p>
+            </div>
+            <div (click)="onRemoveToOrder(cart.id)" class="inline-flex delete-btn absolute top-0 right-2 mt-1 items-center text-base font-semibold text-gray-900 dark:text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none"  viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+              </svg>
+            </div>
+          </div>
         </div>
-    </div>
-</div>
-</div>
-
-<!-- Dropdown menu -->
-<div id="dropdownNotification" class="hidden z-20 w-full max-w-sm bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-800 dark:divide-gray-700" aria-labelledby="dropdownNotificationButton">
-
-  <div class="divide-y divide-gray-100 dark:divide-gray-700">
-    
-    <div href="#" class="flex py-3 px-4 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer" *ngFor="let product of products  | filter:filterByName" (click)="goToDetailsProduct(product.id)">
-      <div class="flex-shrink-0">
-        <img class="w-11 h-11 rounded-full" [src]="product.imageURL[0]" alt="Joseph image">
-      </div>
-      <div class="pl-3 w-full">
-        <div class="text-black  text-sm mb-1.5 dark:text-gray-400"> {{ product.name }}  </div>
-          <div>{{ product.description | slice:0:40  }}...</div>
-          <div class="text-xs"> {{ product.category }}</div>
       </div>
     </div>
-
-  </div>
-  <a href="/products" class="block py-2 text-sm font-medium text-center text-gray-900 bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white hover:text-gray-800">
-    <div class="inline-flex items-center ">
-      <svg class="mr-2 w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
-        Voir plus
+    <div *ngIf="cartsUser?.length > 0" class="flex justify-between font-bold text-lg my-3 p-5 bg-slate-200 rounded-md" style="color: #15253e">
+      <span>Total :</span>
+      <span>{{ totalPrice | currency: 'XOF' }}</span>
     </div>
-  </a>
+    <button type="submit" (click)="goToCheckout()" class="text-white btn-submit justify-center flex items-center  w-full focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+      </svg>
+       <strong class="text-cart">Passez à l'achat</strong>
+    </button>
+ </form>
+
+
 </div>

@@ -32,7 +32,7 @@
     <div class="cards">
       <div class="card card-shopping" *ngFor="let product of products">
         <img  [src]="product.imageURL[0]" alt="" (click)="goToDetailsProduct(product.id)">
-          <div class="description"> 
+          <div class="description">
             <div class="prix-stars">
                 <span class="title" (click)="goToDetailsProduct(product.id)">{{ product.name }}</span>
                 <span class="prix">{{ (product.price) | currency: 'XOF' }}</span>
@@ -42,6 +42,7 @@
           <!-- <button class="uk-button addCart">Ajouter au panier</button> -->
       </div>
     </div>
+    
   </div>
 </div>
 

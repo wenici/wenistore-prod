@@ -11,7 +11,9 @@ export interface User {
     nom?: string;
     email?: string;
     createdAd?: any;
+    password?: string;
+    phone?: number;
     photoURL?: string;
-    role: Roles;
+    role?: Roles;
     // emailVerified: string;
 }

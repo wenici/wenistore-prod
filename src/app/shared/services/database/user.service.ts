@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -18,7 +19,7 @@ export class UserService {
   userCollection: AngularFirestoreCollection<User>;
   userDoc!: AngularFirestoreDocument<User>;
 
-  constructor(private dbstore: AngularFirestore, private router: Router) {
+    constructor(private dbstore: AngularFirestore, private router: Router, private auth: AngularFireAuth,) {
     this.userCollection = this.dbstore.collection('users');
   }
 
@@ -39,9 +40,10 @@ export class UserService {
   }
 
   // getUser = (userID?: string) => this.userCollection.doc(userID).valueChanges();
-  getUser(userID: string) {
-    const userCollect = this.userCollection = this.dbstore.collection('users');
-    userCollect.doc(userID).valueChanges();
+  async getUser() {
+    const userID = (await this.auth.currentUser).uid;
+    const userCollect = this.userCollection.doc(userID).valueChanges();
+    return  userCollect;
   }
 
   getAllUsers() {

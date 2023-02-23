@@ -1,9 +1,15 @@
-import { User } from './user.model';
 import  { Product } from './product.model';
 export interface Cart {
     id?: string;
-    cartUserData: User;
     productData: Product;
-    createdAt?: Date;
+    userID: string;
+    createdAt?: any;
     quantity: number;
+}
+
+export interface CartLocal {
+    id?: string;
+    productData: Product;
+    createdAt?: any;
+    quantity?: number;
 }

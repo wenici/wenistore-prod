@@ -25,3 +25,20 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+  // removeInLocalStorage() {
+  //   localStorage.removeItem("cartData")
+  // }
+
+  // onAddToShoppingCarts() {
+  //   this.cartItems.push(this.product);
+  //   const data = JSON.stringify(this.cartItems);
+  //   localStorage.setItem('cartData', data);
+  //   if(this.cartItems)
+  //   console.log(this.cartItems);
+  // }
+
+  // addToCart(product: Product) {
+  //   this.onAddToShoppingCarts();
+  //   window.alert('Your product has been added to the cart!');
+  // }

@@ -11,6 +11,15 @@
       "schematics": {
         "@schematics/angular:application": {
           "strict": true
+        },
+        "@schematics/angular:component": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
         }
       },
       "root": "",
@@ -32,10 +41,12 @@
             "styles": [
               "src/custom-theme.scss",
               "src/styles.css",
+              "./node_modules/aos/dist/aos.css",
               "node_modules/uikit/dist/css/uikit.min.css",
               "node_modules/uikit/dist/css/uikit-core.min.css"
             ],
             "scripts": [
+              "./node_modules/aos/dist/aos.js",
               "node_modules/uikit/dist/js/uikit.min.js",
               "node_modules/uikit/dist/js/uikit-icons.min.js",
               "node_modules/jquery/dist/jquery.min.js"

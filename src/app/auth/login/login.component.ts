@@ -101,6 +101,34 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  loginWithGoogle() {
+    this.authService.loginGoogle();
+    const auth = this.authService.connected = true;
+    if(auth) {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      Toast.fire({
+        icon: 'success',
+        title: 'Votre êtes bien connecté'
+      })
+      this.router.navigate(['acceuil']);
+      // window.location.reload();
+    }
+  }
+
+  onLogout(){
+    this.authService.logout();
+  }
+
   ngOnInit(): void {
     this.titleService.setTitle(this.title);
   }

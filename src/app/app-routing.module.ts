@@ -14,6 +14,8 @@ import { LoginComponent } from './auth/login/login.component'
 import { RegisterComponent } from './auth/register/register.component';
 import { CreateComponent } from './admin/create/create.component';
 
+import { AuthGuardService } from './shared/services/auth/auth-guard.service';
+
 const routes: Routes = [
   {
     path: '',
@@ -22,7 +24,8 @@ const routes: Routes = [
   },
   {
     path: 'admin/create',
-    component: CreateComponent
+    component: CreateComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'products',
@@ -35,6 +38,7 @@ const routes: Routes = [
   {
     path: 'update/:id',
     component: UpdateProductComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'login',
@@ -54,9 +58,9 @@ const routes: Routes = [
   },
   {
     path: 'orders',
-    component: OrdersComponent
+    component: OrdersComponent,
   },
-  { 
+  {
     path: 'acceuil',
     loadChildren: () => import('./top/top.module').then(m => m.TopModule)
   },

@@ -18,7 +18,7 @@ export class CreateComponent implements OnInit {
 
   isValidForm = false;
   imagesUrl: string[] = [];
-  quantity: number = 0;
+  quantity: number = 1;
   isMyProduct: boolean = false;
   isInvalid: boolean = true;
   date = Date;
@@ -47,7 +47,7 @@ export class CreateComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-  
+
   get name(): AbstractControl | null {
     return this.addProductForm.get('name');
   }
@@ -78,7 +78,7 @@ export class CreateComponent implements OnInit {
   get numero(): AbstractControl | null {
     return this.addProductForm.get('numero');
   }
-  
+
   onSubmit() {
     if(this.addProductForm.valid) {
       const product: Product = {

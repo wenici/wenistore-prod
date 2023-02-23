@@ -92,3 +92,64 @@ nav {
   margin-left: 1.5rem/* 8px */;
   margin-right: 1.5rem/* 8px */;
 }
+
+.connect-block {
+  padding: 5px;
+}
+
+.connect-block:hover {
+  background: #eef0f2;
+  transition: 0.3s;
+  border-radius: 8px;
+ }
+
+ .btn-logout, .btn-logout label {
+  color: #01bcbd;
+  cursor: pointer;
+ }
+
+li > div, li  label
+{
+  cursor: pointer;
+}
+
+.card-shopping {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+}
+
+.title-cart
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-cart .text-xl{
+  font-weight: bold;
+  color: #15253e;
+}
+
+.delete-btn {
+  color: #ee1815;
+}
+
+.price-cart {
+  color: #01bcbd;
+}
+
+.delete-btn:hover {
+  cursor: pointer;
+}
+
+.btn-submit {
+  background-color: #15253e;
+  color: #FFFF;
+  font-weight: bolder;
+}
+
+.text-cart{
+  margin-left: 0.8em;
+}

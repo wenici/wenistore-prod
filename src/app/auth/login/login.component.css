@@ -60,4 +60,14 @@ a {
 
 .uk-card > div {
     margin-top: 2rem;
-} 
+}
+
+.or-google button {
+  background:#15253e
+}
+
+.or-google button:hover {
+  background:#fafcff;
+  color:#15253e;
+  border: 1px solid #15253e
+}

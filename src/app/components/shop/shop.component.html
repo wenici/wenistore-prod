@@ -1,6 +1,6 @@
 
 <div class="uk-container container">
-    <div class="uk-container uk-text-center uk-card-default uk-card no-cart" *ngIf="shopping.length === 0">
+    <div class="uk-container uk-text-center uk-card-default uk-card no-cart" *ngIf="shopping?.length == 0">
         <div  class="no-cart">
             <div class="uk-margin no-cart-found items-center">
                 <span><img src="assets/img/nocart.png" alt=""></span>
@@ -11,12 +11,12 @@
             </div>
         </div>
     </div>
-    <div class="uk-container container-box-0" *ngIf="shopping.length > 0">
+    <div class="uk-container container-box-0" *ngIf="shopping?.length > 0">
         <div class="msg-nbre">
-        Votre panier contient <span>{{ shopping.length }}</span> article(s)
+        Votre panier contient <span>{{ shopping?.length }}</span> article(s)
         </div>
     </div>
-    <div class="uk-container container-box-1" *ngIf="shopping.length > 0">
+    <div class="uk-container container-box-1" *ngIf="shopping?.length > 0">
     <div class="container-panier box-1">
         <div class="articles"></div>
         <div class="group-prix">
@@ -25,7 +25,7 @@
             <div class="sous-total">Sous Total</div>
         </div>
     </div>
-    <div class="container-panier uk-margin box-2 uk-border-rounded uk-card-default" *ngFor="let cart of shopping;">
+    <!-- <div class="container-panier uk-margin box-2 uk-border-rounded uk-card-default" *ngFor="let cart of shopping;">
         <div class="articles">
             <img [src]="cart.productData.imageURL" (click)="goToDetailsProduct(cart.id)">
             <div class="desc-product">
@@ -54,7 +54,7 @@
                 <span class="devise">FCFA</span>
             </div>
         </div>
-    </div>
+    </div> -->
    <div class="total-row">
         <label>Total:</label>
         <div class="total-prix">
@@ -63,7 +63,7 @@
         </div>
     </div>
     </div>
-    <div class="valid-buy" *ngIf="shopping.length > 0">
+    <div class="valid-buy" *ngIf="shopping?.length > 0">
         <div class="home">
             <a href="/">continuer vos achats</a>
         </div>

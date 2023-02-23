@@ -1,38 +1,57 @@
 <div class="uk-container">
   <app-sidebar></app-sidebar>
-  <div class="bg-white drop-shadow-md  my-8">
-   <div>
-    <span>Nouveauté</span>
-    <div class="uk-container slider-box">
+  <div class="bg-white drop-shadow-md my-8">
+    <div>
+      <span>Nouveauté</span>
+      <div class="uk-container slider-box">
         <div uk-slider>
-            <div class="uk-position-relative uk-visible-toggle uk-light grid" tabindex="-1" uk-slideshow="animation: push">
-                <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-4@s uk-child-width-1-5@m">
-                    <li *ngFor="let product of products" width="200" height="300"  class="cursor-pointer" [routerLink]="['/product-details', product.id]">
-                        <img [src]="product.imageURL[0]"  width="200" height="300" alt="">
-                        <div class="uk-overlay uk-position-bottom uk-text-center">
-                            <h3 class="uk-margin-remove">{{ (product.price) | currency: 'XOF' }}</h3>
-                            <p class="uk-margin-remove text-small">{{ product.name }}</p>
-                        </div>
-                    </li>
-                </ul>
-                <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-                <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
-            </div>
-            <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+          <div
+            class="uk-position-relative uk-visible-toggle uk-light grid"
+            tabindex="-1"
+            uk-slideshow="animation: push"
+          >
+            <ul
+              class="uk-slider-items uk-child-width-1-2 uk-child-width-1-4@s uk-child-width-1-5@m"
+            >
+              <li
+                *ngFor="let product of products"
+                width="200"
+                height="300"
+                class="cursor-pointer"
+                [routerLink]="['/product-details', product.id]"
+              >
+                <img
+                  [src]="product.imageURL[0]"
+                  width="200"
+                  height="300"
+                  alt=""
+                />
+                <div class="uk-overlay uk-position-bottom uk-text-center">
+                  <h3 class="uk-margin-remove">
+                    {{ product.price | currency : "XOF" }}
+                  </h3>
+                  <p class="uk-margin-remove text-small">{{ product.name }}</p>
+                </div>
+              </li>
+            </ul>
+            <a
+              class="uk-position-center-left uk-position-small uk-hidden-hover"
+              href="#"
+              uk-slidenav-previous
+              uk-slider-item="previous"
+            ></a>
+            <a
+              class="uk-position-center-right uk-position-small uk-hidden-hover"
+              href="#"
+              uk-slidenav-next
+              uk-slider-item="next"
+            ></a>
+          </div>
+          <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
         </div>
-    </div>
-   </div>
-  </div>
-</div>
-
-<div class="uk-container">
-  <div class="">
-    <div>Top marques</div>
-    <div class="grid grid-cols-7 gap-8">
-      
+      </div>
     </div>
   </div>
 </div>
-
 
 <app-footer></app-footer>

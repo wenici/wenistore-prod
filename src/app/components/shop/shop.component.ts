@@ -25,16 +25,16 @@ export class ShopComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit() { 
+  async ngOnInit() {
     this.titleService.setTitle(this.title);
-    this.shopCartService.getItems().subscribe((res) => {
-      this.shopping = res.map((e) => {
-        return {
-          id: e.payload.doc.id,
-          ...(e.payload.doc.data() as Cart),
-        };
-      });
-    });
+    // (await this.shopCartService.getShoppingUser()).subscribe((res) => {
+    //   this.shopping = res.map((e) => {
+    //     return {
+    //       id: e.payload.doc.id,
+    //       ...(e.payload.doc.data() as Cart),
+    //     };
+    //   });
+    // });
   }
 
   goToDetailsProduct(productId?: string): void {
@@ -60,16 +60,11 @@ export class ShopComponent implements OnInit {
         title: 'Article supprimé de votre panier',
       });
     }).catch((error) => {
-      console.error("Error removing document: ", error);
+      console.error("Erreur de supprission de document: ", error);
     });
     console.log(shoppingID);
   }
 
-  inCrementProduct(productId?: string) {
-    this.dbstore.collection('shooping').doc(`${productId}`).update({
-    quantity: this.quantity+1
-     });
-    console.log(productId);
-  }
-  
+
+
 }

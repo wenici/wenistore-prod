@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-
 import Swal from 'sweetalert2';
-
+import firebase from 'firebase/compat/app';
 import { User } from 'src/app/models/user.model';
-import * as firebase from 'firebase/compat/app';
+import 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
-type UserCredential = Promise<firebase.default.auth.UserCredential>;
 
-
-import { Observable, of} from 'rxjs';
-import  { switchMap } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { of } from 'rxjs';
+import  { switchMap, Observable } from 'rxjs';
+import { constants } from 'buffer';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +19,8 @@ export class AuthService {
 
   userRole!: AngularFirestoreCollection<User>;
 
-  userData: any;
+  connected = false;
+  userData: User;
   user$!: Observable<User>;
 
   constructor(
@@ -28,32 +28,51 @@ export class AuthService {
     private router: Router,
     public dbstore: AngularFirestore
   ) {
-    this.afAuth.authState.subscribe((user) => {
+    this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user')!);
+        const userData = user;
+        localStorage.setItem('user', JSON.stringify(userData));
+        JSON.parse(localStorage.getItem('user'));
       } else {
-        localStorage.setItem('user', 'null');
-        JSON.parse(localStorage.getItem('user')!);
+        localStorage.setItem('user', null);
+        JSON.parse(localStorage.getItem('user'));
       }
-    });
-    this.afAuth.authState.pipe(switchMap((user) => {
-      if(user) {
-        return this.dbstore.doc<User>(`users/${user.uid}`).valueChanges()
-      } else {
-        return of(null);
-      }
-    }))
+    })
   }
 
-  createNewUser(email: string, password: string): UserCredential {
+  createNewUser(email: string, password: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password);
   }
 
-  loginUser(email: string, password: string): UserCredential {
-    localStorage.getItem('user');
+  loginUser(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password);
+  }
+
+  loginGoogle() {
+    try {
+      const auth = this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+      if(auth) {
+        this.connected = true;
+        localStorage.setItem('user', JSON.stringify(auth));
+      }
+    } catch (error) {
+      this.connected = false;
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      Toast.fire({
+        icon: 'error',
+        title: 'Une erreur s\'est produite'
+      })
+    }
   }
 
   logout() {

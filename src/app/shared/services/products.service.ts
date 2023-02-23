@@ -4,9 +4,6 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
 
-import { take, map } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
-
 
 @Injectable({
   providedIn: 'root'

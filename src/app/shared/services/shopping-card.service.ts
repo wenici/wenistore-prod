@@ -1,58 +1,100 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import "firebase/auth";
+import { Injectable, EventEmitter } from '@angular/core';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreCollectionGroup
+} from '@angular/fire/compat/firestore';
 
+import 'firebase/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { User } from 'src/app/models/user.model';
 import { Product } from 'src/app/models/product.model';
-
+import { Cart, CartLocal } from 'src/app/models/cart.model';
+import { Router } from '@angular/router';
+import { CheckoutFirestore } from '../../models/checkout.model';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShoppingCardService {
-
   productsCollection: AngularFirestoreCollection<Product>;
   userCollection: AngularFirestoreCollection<User>;
+  productCollectionGroup: AngularFirestoreCollectionGroup<Product>
+  orderCollection: AngularFirestoreCollection<Cart>;
+  orderLocalCollection: AngularFirestoreCollection<CartLocal>;
+  cartCollection: AngularFirestoreCollection<Cart>;
+  checkoutCollection: AngularFirestoreCollection<CheckoutFirestore>;
+  user: User;
+  product: Product;
+  ordersLocal: CartLocal;
+  orders: Cart;
+  checkout: CheckoutFirestore;
+  cartData = new EventEmitter<CartLocal[] | []>()
 
-  constructor(private readonly dbstore: AngularFirestore) {
+  constructor(
+    private readonly dbstore: AngularFirestore,
+    private auth: AngularFireAuth,
+    private router: Router
+  ) {
     this.productsCollection = this.dbstore.collection('products');
     this.userCollection = this.dbstore.collection('users');
+    this.orderCollection = this.dbstore.collection('orders');
+    this.checkoutCollection = this.dbstore.collection('checkouts');
   }
 
-  getItems() {
-    return this.dbstore.collection('shopping').snapshotChanges();
+  addToLocalStorage(cartLocalData: CartLocal){
+    let cartData = [];
+    let localCart = localStorage.getItem('cart_items');
+    if(!localCart) {
+      localStorage.setItem('cart_items', JSON.stringify([cartLocalData]))
+    } else {
+      cartData = JSON.parse(localCart);
+      cartData.push(cartLocalData);
+      localStorage.setItem('cart_items', JSON.stringify(cartData))
+    }
+    this.cartData.emit(cartData)
   }
 
-  async isMyShoppingCartProduct(product: Product, userID: string): Promise<void> {
-    const userDoc = this.dbstore.firestore.collection('users').doc(userID);
-    const userShoppingProduct = userDoc.collection('shopping');
-    const shopCartPrtDoc = await userShoppingProduct.doc(product.id).get();
-    product.isMyProduct = shopCartPrtDoc.exists;
+  removeToLocalStorage(cartLocalID: string) {
+    let localCartData = localStorage.getItem('cart_items');
+    if(localCartData) {
+      let items: CartLocal[] = JSON.parse(localCartData);
+      items = items.filter((item: CartLocal) => cartLocalID! == item.id);
+      localStorage.setItem('cart_items', JSON.stringify(items));
+      this.cartData.emit(items);
+    }
   }
 
-  addToMyCart(product: Product, userID: string, qteProduct: number): Promise<void> {
-    const productDoc = this.dbstore.collection('products').doc(product.id);
-    productDoc.update({ quantity: qteProduct });
-    const userDoc = this.dbstore.firestore.collection('users').doc(userID)
-    const userShoppingProduct = userDoc.collection('shopping');
-    return userShoppingProduct.doc(product.id).set(product);
-  }
-
-  removeToMyCart(product: Product, userID: string, qteProduct: number): Promise<void> {
-    const productDoc = this.productsCollection.doc(product.id);
-    productDoc.update({ quantity: qteProduct });
-    const userDoc = this.userCollection.doc(userID);
-    const userShoppingProduct = userDoc.collection('shopping');
-    return userShoppingProduct.doc(product.id).delete();
-  }
-
-  async getProductsUser(userID: string): Promise<Product[]> {
-    const userDoc = this.dbstore.firestore.collection('users').doc(userID);
-    const querySnapshot = await userDoc.collection('shopping').get();
-    return querySnapshot.docs.map((doc) => {
-      const data = doc.data() as Product;
-      const product = doc.id;
-      return { product, ...data };
+  async addToOrder(product: Product, quantity: number, userID: string) {
+    this.orderCollection.add({
+      productData: product,
+      quantity: quantity,
+      userID: userID,
+      createdAt: new Date(),
     });
   }
 
+  getOrdersProducts(){
+    return this.dbstore.collection('orders').snapshotChanges();
+  }
+
+  removeToOrder(productID: string){
+    this.orderCollection.doc(productID).delete();
+  }
+
+  getUserProductOrder(){
+    this.auth.onAuthStateChanged((userAuth) => {
+      const userIDAuth = userAuth.uid;
+      return this.dbstore.collection('orders', (ref) => ref.where('userID', '==', userIDAuth)).snapshotChanges();;
+    });
+  }
+
+  getOrdersByUser(){
+   return this.dbstore.collection('orders').valueChanges()
+  }
+
+  addToCheckouts = (checkout: CheckoutFirestore) => this.checkoutCollection.add(checkout)
+
+  getCheckouts() {
+    return this.dbstore.collection('checkouts').snapshotChanges();
+  }
 }

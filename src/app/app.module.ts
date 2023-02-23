@@ -39,7 +39,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { MaterialModule } from './layouts/material.module';
 import { ShopComponent } from './components/shop/shop.component';
-import { DeliveryComponent } from './components/shop/checkout/delivery/delivery.component';
 import { PaymentComponent } from './components/shop/checkout/payment/payment.component';
 import { CheckoutComponent } from './components/shop/checkout/checkout.component';
 import { OrdersComponent } from './components/shop/orders/orders.component';
@@ -47,6 +46,8 @@ import { UserProfilImgComponent } from './auth/user-profil-img/user-profil-img.c
 import { AllComponent } from './admin/all/all.component';
 import { ProductsService } from './shared/services/products.service';
 import { ShoppingCardService } from './shared/services/shopping-card.service';
+
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 @NgModule({
   declarations: [
@@ -59,7 +60,6 @@ import { ShoppingCardService } from './shared/services/shopping-card.service';
     RegisterComponent,
     NoFoundPageComponent,
     ShopComponent,
-    DeliveryComponent,
     PaymentComponent,
     CheckoutComponent,
     OrdersComponent,
@@ -75,6 +75,7 @@ import { ShoppingCardService } from './shared/services/shopping-card.service';
     FormsModule,
     SwiperModule,
     Ng2SearchPipeModule,
+    GooglePlaceModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     BrowserModule,

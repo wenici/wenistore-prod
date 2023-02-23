@@ -1,7 +1,7 @@
 <div class="uk-container">
     <div class="uk-grid uk-child-width-1-2 uk-grid-match">
         <div class="uk-width-3-4@s bbox">
-            
+
             <div>
                 <h3 class="uk-font-bold">
                     Information concernantt la livraison
@@ -10,31 +10,43 @@
             <div>
                 <mat-progress-bar *ngIf="dataSended"  mode="indeterminate"></mat-progress-bar>
             </div>
-            <div class="uk-margin register-infos">
+
+            <!-- si l'utilisateur est connecté -->
+            <div class="uk-margin register-infos" *ngIf="isAuthenticated()">
                 <mat-stepper orientation="vertical" #stepper>
-                    <form [formGroup]="firstFormGroup">
+                    <form [formGroup]="twoFormGroup">
                         <mat-step >
                             <ng-template matStepLabel>Informations personnelles</ng-template>
-                            <mat-form-field appearance="fill">
-                            <mat-label>Nom</mat-label>
-                            <input matInput placeholder="Last name, First name" formControlName="name" required>
-                            </mat-form-field>
-                            <mat-form-field appearance="fill">
-                                <mat-label>Adresse</mat-label>
-                                <input matInput placeholder="Last name, First name" formControlName="adress" required>
-                            </mat-form-field>
-                            <mat-form-field appearance="fill">
+                            <div class="uk-child-width-1-2">
+                              <mat-form-field appearance="fill">
+                                <mat-label>Nom</mat-label>
+                                <input matInput placeholder="Last name, First name" value="{{ userData?.nom}}" disabled="disabled">
+                              </mat-form-field>
+                              <mat-form-field appearance="fill">
                                 <mat-label>Téléphone</mat-label>
-                                <input matInput placeholder="Marcory 9e Arrondissement Chez Rifat" formControlName="phone" required>
-                            </mat-form-field>
+                                <input matInput placeholder="Téléphone" value="{{ userData?.phone}}" disabled="disabled">
+                              </mat-form-field>
+                            </div>
+                            <div class="uk-child-width-1-2">
+                              <mat-form-field appearance="fill">
+                                <mat-label>Email</mat-label>
+                                <input matInput placeholder="email@gmail.com" value="{{ userData?.email}}" disabled="disabled">
+                              </mat-form-field>
+                              <mat-form-field appearance="fill">
+                                <mat-label>Adresse</mat-label>
+                                <input matInput placeholder="Last name, First name" value="{{ formattedaddress }}"
+                                      formControlName="lieuDeLiraison" ngx-google-places-autocomplete [options]="options"
+                                      (onAddressChange)="AddressChange($event)" required>
+                              </mat-form-field>
+                            </div>
                             <div>
-                            <button mat-button mat-raised-button color="accent" matStepperNext>Suivant</button>
+                              <button mat-button mat-raised-button color="accent" matStepperNext>Suivant</button>
                             </div>
                         </mat-step>
                         <mat-step>
                             <ng-template matStepLabel>Mode de livraison</ng-template>
                             <mat-radio-group aria-labelledby="example-radio-group-label"
-                            class="example-radio-group" formControlName="delevery">
+                            class="example-radio-group" formControlName="typeDelivraison">
                                 <mat-radio-button value="Livraison à domicile">Livraison à domicile (frais 1000 F)</mat-radio-button>
                                 <mat-radio-button value="Point de relais">Point de rélais (Treichville)</mat-radio-button>
                             </mat-radio-group>
@@ -46,19 +58,77 @@
                         <mat-step>
                             <ng-template matStepLabel>Mode de paiement</ng-template>
                             <mat-radio-group aria-labelledby="example-radio-group-label"
-                            class="example-radio-group" formControlName="payBy">
-                                <mat-radio-button checked value="en espèces">En espèces  (à la livraison)</mat-radio-button>
+                            class="example-radio-group" formControlName="modePayement">
+                                <mat-radio-button checked value="En espèces">En espèces  (à la livraison)</mat-radio-button>
                             </mat-radio-group>
                             <div>
-                                <button mat-button mat-raised-button color="accent" (click)="doneForm()">Terminer</button>
+                                <button mat-button mat-raised-button color="accent" (click)="onGoToShopping()">Terminer</button>
                             </div>
                         </mat-step>
                     </form>
                   </mat-stepper>
             </div>
+
+
+            <div class="uk-margin register-infos" *ngIf="!isAuthenticated()">
+              <mat-stepper orientation="vertical" #stepper>
+                  <form [formGroup]="firstFormGroup">
+                      <mat-step >
+                          <ng-template matStepLabel>Informations personnelles</ng-template>
+                          <div class="uk-child-width-1-2">
+                            <mat-form-field appearance="fill">
+                              <mat-label>Nom</mat-label>
+                              <input matInput placeholder="Last name, First name" formControlName="name">
+                            </mat-form-field>
+                            <mat-form-field appearance="fill">
+                              <mat-label>Téléphone</mat-label>
+                              <input matInput placeholder="Téléphone" formControlName="phone">
+                            </mat-form-field>
+                          </div>
+                          <div class="uk-child-width-1-2">
+                            <mat-form-field appearance="fill">
+                              <mat-label>Email</mat-label>
+                              <input matInput placeholder="email@gmail.com" formControlName="email">
+                            </mat-form-field>
+                            <mat-form-field appearance="fill">
+                              <mat-label>Adresse</mat-label>
+                              <input matInput placeholder="Last name, First name" value="{{ formattedaddress }}"
+                                    formControlName="lieuDeLiraison" ngx-google-places-autocomplete [options]="options"
+                                    (onAddressChange)="AddressChange($event)" required>
+                            </mat-form-field>
+                          </div>
+                          <div>
+                            <button mat-button mat-raised-button color="accent" matStepperNext>Suivant</button>
+                          </div>
+                      </mat-step>
+                      <mat-step>
+                          <ng-template matStepLabel>Mode de livraison</ng-template>
+                          <mat-radio-group aria-labelledby="example-radio-group-label"
+                          class="example-radio-group" formControlName="typeDelivraison">
+                              <mat-radio-button value="Livraison à domicile">Livraison à domicile (frais 1000 F)</mat-radio-button>
+                              <mat-radio-button value="Point de relais">Point de rélais (Treichville)</mat-radio-button>
+                          </mat-radio-group>
+                          <div class="btn">
+                          <button mat-button mat-raised-button color="warn" matStepperPrevious>Retour</button>
+                          <button mat-button mat-raised-button color="accent" matStepperNext>Suivant</button>
+                          </div>
+                      </mat-step>
+                      <mat-step>
+                          <ng-template matStepLabel>Mode de paiement</ng-template>
+                          <mat-radio-group aria-labelledby="example-radio-group-label"
+                          class="example-radio-group" formControlName="modePayement">
+                              <mat-radio-button checked value="En espèces">En espèces  (à la livraison)</mat-radio-button>
+                          </mat-radio-group>
+                          <div>
+                              <button mat-button mat-raised-button color="accent" (click)="onGoToShopping()">Terminer</button>
+                          </div>
+                      </mat-step>
+                  </form>
+                </mat-stepper>
+          </div>
         </div>
         <div class="uk-width-1-4@s">
-            
+
         </div>
     </div>
 </div>
