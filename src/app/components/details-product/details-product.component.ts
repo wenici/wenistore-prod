@@ -47,7 +47,6 @@ export class DetailsProductComponent implements OnInit {
         };
       });
     })
-
   }
 
   ngOnInit(): void {
