@@ -78,7 +78,7 @@
                           <div class="uk-child-width-1-2">
                             <mat-form-field appearance="fill">
                               <mat-label>Nom</mat-label>
-                              <input matInput placeholder="Last name, First name" formControlName="name">
+                              <input matInput placeholder="Last name, First name" formControlName="userName">
                             </mat-form-field>
                             <mat-form-field appearance="fill">
                               <mat-label>Téléphone</mat-label>
@@ -120,7 +120,7 @@
                               <mat-radio-button checked value="En espèces">En espèces  (à la livraison)</mat-radio-button>
                           </mat-radio-group>
                           <div>
-                              <button mat-button mat-raised-button color="accent" (click)="onGoToShopping()">Terminer</button>
+                              <button mat-button mat-raised-button color="accent" (click)="onSubmitWhenUserNoConnected()">Terminer</button>
                           </div>
                       </mat-step>
                   </form>

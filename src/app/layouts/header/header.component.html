@@ -388,35 +388,73 @@
         <span>Votre panier est vide</span>
       </div>
     </div>
-    <div *ngIf="cartsUser?.length > 0">
-      <div class="mb-3" *ngFor="let cart of cartsUser">
-        <div class="bg-slate-100 rounded-lg">
-          <div class="flex items-center space-x-4 relative">
-            <div class="flex-shrink-0">
-                <img class="w-24 h-24 rounded-lg" src="{{ cart.productData.imageURL }}" alt="Neil image">
-            </div>
-            <div class="flex-1 min-w-0">
-              <span>{{ cart.createdAt.toDate() | date:'medium' }}</span>
-                <p class="text-sm pt-2 font-medium text-gray-900 truncate dark:text-white">
-                  {{ cart.productData.name }}
-                </p>
-                <p class="text-sm price-cart  truncate dark:text-gray-400">
-                  <strong>{{ cart.productData.price | currency: 'XOF'}}</strong>
-                  <span style="color:black"> x {{ cart.productData.quantity }}</span>
-                </p>
-            </div>
-            <div (click)="onRemoveToOrder(cart.id)" class="inline-flex delete-btn absolute top-0 right-2 mt-1 items-center text-base font-semibold text-gray-900 dark:text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none"  viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-              </svg>
+
+    <div *ngIf="isAuthenticated()">
+      <div *ngIf="cartsUser?.length > 0">
+        <div class="mb-3" *ngFor="let cart of cartsUser">
+          <div class="bg-slate-100 rounded-lg">
+            <div class="flex items-center space-x-4 relative">
+              <div class="flex-shrink-0">
+                  <img class="w-24 h-24 rounded-lg" src="{{ cart.productData.imageURL }}" alt="Neil image">
+              </div>
+              <div class="flex-1 min-w-0">
+                <span>{{ cart.createdAt.toDate() | date:'medium' }}</span>
+                  <p class="text-sm pt-2 font-medium text-gray-900 truncate dark:text-white">
+                    {{ cart.productData.name }}
+                  </p>
+                  <p class="text-sm price-cart  truncate dark:text-gray-400">
+                    <strong>{{ cart.productData.price | currency: 'XOF'}}</strong>
+                    <span style="color:black"> x {{ cart.productData.quantity }}</span>
+                  </p>
+              </div>
+              <div (click)="onRemoveToOrder(cart.id)" class="inline-flex delete-btn absolute top-0 right-2 mt-1 items-center text-base font-semibold text-gray-900 dark:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none"  viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div *ngIf="!isAuthenticated()">
+      <div *ngIf="cartsLocal?.length > 0">
+        <div class="mb-3" *ngFor="let cart of cartsLocal">
+          <div class="bg-slate-100 rounded-lg">
+            <div class="flex items-center space-x-4 relative">
+              <div class="flex-shrink-0">
+                  <img class="w-24 h-24 rounded-lg" src="{{ cart.productData.imageURL }}" alt="Neil image">
+              </div>
+              <div class="flex-1 min-w-0">
+                <span>{{ cart.productData.name }}</span>
+                  <p class="text-sm pt-2 font-medium text-gray-900 truncate dark:text-white">
+                    {{ cart.productData.name }}
+                  </p>
+                  <p class="text-sm price-cart  truncate dark:text-gray-400">
+                    <strong>{{ cart.productData.price | currency: 'XOF'}}</strong>
+                    <span style="color:black"> x {{ cart.productData.quantity }}</span>
+                  </p>
+              </div>
+              <div (click)="onRemoveToOrder(cart.id)" class="inline-flex delete-btn absolute top-0 right-2 mt-1 items-center text-base font-semibold text-gray-900 dark:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none"  viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div *ngIf="cartsUser?.length > 0" class="flex justify-between font-bold text-lg my-3 p-5 bg-slate-200 rounded-md" style="color: #15253e">
       <span>Total :</span>
       <span>{{ totalPrice | currency: 'XOF' }}</span>
+    </div>
+
+    <div *ngIf="cartsLocal?.length > 0" class="flex justify-between font-bold text-lg my-3 p-5 bg-slate-200 rounded-md" style="color: #15253e">
+      <span>Total :</span>
+      <span>{{ totalPriceLocal | currency: 'XOF' }}</span>
     </div>
     <button type="submit" (click)="goToCheckout()" class="text-white btn-submit justify-center flex items-center  w-full focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

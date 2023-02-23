@@ -7,7 +7,7 @@ import { ShoppingCardService } from 'src/app/shared/services/shopping-card.servi
 import { UserService } from '../../shared/services/database/user.service';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreCollectionGroup } from '@angular/fire/compat/firestore';
 import { User } from 'src/app/models/user.model';
-import { Cart } from 'src/app/models/cart.model';
+import { Cart, CartLocal } from 'src/app/models/cart.model';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import Swal from 'sweetalert2';
 
@@ -23,17 +23,18 @@ export class HeaderComponent implements OnInit {
   cart: Cart;
   carts!: any;
   cartsUser: Cart[];
+  cartsLocal: CartLocal[];
   userData: User
   filterByName: any;
   userCollection: AngularFirestoreCollection<User>;
   orderCollection: AngularFirestoreCollection<Cart>;
   productCollectionGroup: AngularFirestoreCollectionGroup<Product>
-  isDelete: boolean = false;
   totalQty: number;
   totalPrice: number;
+  totalQtyLocal: number;
+  totalPriceLocal: number;
   userId: any;
   cartItems = 0;
-
 
   constructor(
     public router: Router,
@@ -93,10 +94,24 @@ export class HeaderComponent implements OnInit {
       })
     })
 
-
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.cartsLocal = JSON.parse(localStorage.getItem('cart_items'));
+    console.log('cart',this.cartsLocal);
+    const quantityTotalLocal  = this.cartsLocal.reduce((prevVal, currentQty) => {
+      return prevVal + currentQty.productData.quantity
+    }, 0);
+    this.totalQtyLocal = quantityTotalLocal;
+    const calutPriceTotal = this.cartsLocal.reduce((prevVal, currentVal) => {
+      if(currentVal.productData.quantity > 2) {
+        return prevVal + ((currentVal.productData.price - 200) * currentVal.productData.quantity)
+      } else {
+          return prevVal + (currentVal.productData.price * currentVal.productData.quantity)
+      }
+    }, 0)
+    this.totalPriceLocal = calutPriceTotal;
+  }
 
   onRemoveToOrder(product: string){
     this.shopping.removeToOrder(product)

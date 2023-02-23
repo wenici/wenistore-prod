@@ -28,13 +28,14 @@ export class CheckoutComponent implements OnInit {
 
   userData: User;
   cartsUser: Cart[];
+  cartsLocal: CartLocal[];
 
   totalQty: number;
   totalPrice: number
 
   firstFormGroup = this._formBuilder.group({
-    email: [''],
-    name: ['', Validators.required],
+    email: ['', Validators.required],
+    userName: ['', Validators.required],
     phone: ['', Validators.required],
     lieuDeLiraison: ['', Validators.required],
     typeDelivraison: ['', Validators.required],
@@ -66,8 +67,6 @@ export class CheckoutComponent implements OnInit {
     public authService: AuthService,
     private dbstore: AngularFirestore,
     private shopping: ShoppingCardService
-
-
   ) {
     this.auth.onAuthStateChanged((userAuth) => {
       const userIDAuth = userAuth.uid;
@@ -102,6 +101,8 @@ export class CheckoutComponent implements OnInit {
         return this.totalPrice = calutPriceTotal;
       })
     })
+    this.cartsLocal = JSON.parse(localStorage.getItem('cart_items'));
+    console.log('cart',this.cartsLocal);
   }
   isAuthenticated = () => this.authService.isLoggedin();
 
@@ -112,6 +113,7 @@ export class CheckoutComponent implements OnInit {
 
   dataSended: boolean = false;
   displayDetails: boolean = true;
+
   ngOnInit(): void {}
 
   async onSubmitWhenUserConnected(){
@@ -169,16 +171,18 @@ export class CheckoutComponent implements OnInit {
   onSubmitWhenUserNoConnected(){
     if(this.firstFormGroup.valid) {
      try {
-      const checkout: CheckoutFirestore = {
-        order: this.cartsUser,
-        userID: this.cart.userID,
-        lieuDeLiraison: this.firstFormGroup.get('address')?.value,
+      const checkout: CheckoutLocal = {
+        order: this.cartsLocal,
+        userName: this.firstFormGroup.get('userName')?.value,
+        phone: this.firstFormGroup.get('phone')?.value,
+        email: this.firstFormGroup.get('email')?.value,
+        lieuDeLiraison: this.firstFormGroup.get('lieuDeLiraison')?.value,
         modePayement: this.firstFormGroup.get('modePayement')?.value,
         typeDelivraison: this.firstFormGroup.get('typeDelivraison')?.value,
         createdAt: new Date(),
         dateDeLiraison: Date()
       }
-      this.shopping.addToCheckouts(checkout);
+      this.shopping.addToCheckoutsLocalToFirestore(checkout);
         const Toast = Swal.mixin({
           toast: true,
           position: 'top',

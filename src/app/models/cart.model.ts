@@ -11,5 +11,4 @@ export interface CartLocal {
     id?: string;
     productData: Product;
     createdAt?: any;
-    quantity?: number;
 }

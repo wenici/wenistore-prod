@@ -11,7 +11,8 @@ import { User } from 'src/app/models/user.model';
 import { Product } from 'src/app/models/product.model';
 import { Cart, CartLocal } from 'src/app/models/cart.model';
 import { Router } from '@angular/router';
-import { CheckoutFirestore } from '../../models/checkout.model';
+import { CheckoutFirestore, CheckoutLocal } from '../../models/checkout.model';
+import { Observable } from 'rxjs/internal/Observable';
 @Injectable({
   providedIn: 'root',
 })
@@ -23,6 +24,7 @@ export class ShoppingCardService {
   orderLocalCollection: AngularFirestoreCollection<CartLocal>;
   cartCollection: AngularFirestoreCollection<Cart>;
   checkoutCollection: AngularFirestoreCollection<CheckoutFirestore>;
+  checkoutLocalToFirestoreCollection: AngularFirestoreCollection<CheckoutLocal>;
   user: User;
   product: Product;
   ordersLocal: CartLocal;
@@ -54,11 +56,11 @@ export class ShoppingCardService {
     this.cartData.emit(cartData)
   }
 
-  removeToLocalStorage(cartLocalID: string) {
+  removeToLocalStorage(cartLocalID: CartLocal) {
     let localCartData = localStorage.getItem('cart_items');
     if(localCartData) {
       let items: CartLocal[] = JSON.parse(localCartData);
-      items = items.filter((item: CartLocal) => cartLocalID! == item.id);
+      items = items.filter((item: CartLocal) => cartLocalID.id! == item.id);
       localStorage.setItem('cart_items', JSON.stringify(items));
       this.cartData.emit(items);
     }
@@ -92,7 +94,8 @@ export class ShoppingCardService {
    return this.dbstore.collection('orders').valueChanges()
   }
 
-  addToCheckouts = (checkout: CheckoutFirestore) => this.checkoutCollection.add(checkout)
+  addToCheckouts = (checkout: CheckoutFirestore) => this.checkoutCollection.add(checkout);
+  addToCheckoutsLocalToFirestore = (checkout: CheckoutLocal) => this.checkoutLocalToFirestoreCollection.add(checkout);
 
   getCheckouts() {
     return this.dbstore.collection('checkouts').snapshotChanges();

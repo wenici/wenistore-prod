@@ -15,10 +15,13 @@ export interface CheckoutFirestore {
 export interface CheckoutLocal {
     id?: string;
     order: CartLocal[];
+    userName: string;
+    phone?: string;
+    email?: string;
     lieuDeLiraison?: string;
     modePayement?: string
     typeDelivraison?: string;
-    createdAt?: string;
+    createdAt?: any;
     delireryAt?: string;
     dateDeLiraison?: string;
 }

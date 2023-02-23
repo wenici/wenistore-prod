@@ -13,6 +13,6 @@ export interface Product {
   category?: string;
   quantity?: number;
   isMyProduct?: boolean;
-  date?: Date;
+  date?: any;
   // createdAt: Date;
 }

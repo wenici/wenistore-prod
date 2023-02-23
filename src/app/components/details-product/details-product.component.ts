@@ -33,6 +33,7 @@ export class DetailsProductComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private productService: ProductsService,
     private shopping: ShoppingCardService,
     private titleService: Title,
@@ -54,19 +55,7 @@ export class DetailsProductComponent implements OnInit {
     let productId= this.route.snapshot.paramMap.get('productId');
     productId && this.productService.getDetailProduct(productId).subscribe((data) => {
       this.product = data;
-
-      let localCartData = localStorage.getItem('cart_items');
-      if(productId && localCartData) {
-        let items = JSON.parse(localCartData);
-        items = items.filter((item: CartLocal) => this.product.id == item.productData.id.toString());
-        if(items.length) {
-          this.removeCart = true
-        } else {
-          this.removeCart = false
-        }
-      }
     })
-    this.getOrderInLocalStorage()
   }
 
   isAuthenticated = () => this.authService.isLoggedin();
@@ -90,39 +79,50 @@ export class DetailsProductComponent implements OnInit {
     })
   }
 
-  async onAddToOrder(){
+  async onAddToOrder(): Promise<void>{
     const userID = (await this.auth.currentUser).uid;
     this.shopping.addToOrder(this.product, this.product.quantity, userID)
   }
 
   onAddToOrderInLoaclStorage(){
+    const productId = this.route.snapshot.paramMap.get('productId');
     const dataCart:  CartLocal = {
-      id: this.product.id,
+      id: productId,
       productData: this.product,
       createdAt: new Date()
     }
     if(dataCart) {
       dataCart.productData.quantity = this.product.quantity;
       console.log(dataCart);
-      this.shopping.addToLocalStorage(dataCart)
+      this.shopping.addToLocalStorage(dataCart);
     }
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+        },
+      });
+    Toast.fire({
+      icon: 'success',
+      title: 'Produit ajouté au panier',
+    });
+    window.location.reload();
   }
 
-  removeOrderInLocalStorage(){
-    this.shopping.removeToLocalStorage(this.product.id);
-  }
+  removeOrderInLocalStorage(): void {}
 
-  getOrderInLocalStorage(){
-
-  }
-
-  incrementProduct() {
+  incrementProduct(): void {
     const qty = this.product.quantity
     this.product.quantity = qty + 1;
     console.log(this.product.quantity);
   }
 
-  desecrementProduct() {
+  desecrementProduct(): void {
     const qty = this.product.quantity;
     if(qty == 1) {
       this.product.quantity = 1
