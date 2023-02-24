@@ -43,10 +43,10 @@ export class ShoppingCardService {
     this.checkoutCollection = this.dbstore.collection('checkouts');
   }
 
-  addToLocalStorage(cartLocalData: CartLocal){
+  addToLocalStorage(cartLocalData: CartLocal): void {
     let cartData = [];
     let localCart = localStorage.getItem('cart_items');
-    if(!localCart) {
+    if (!localCart) {
       localStorage.setItem('cart_items', JSON.stringify([cartLocalData]))
     } else {
       cartData = JSON.parse(localCart);
@@ -56,9 +56,9 @@ export class ShoppingCardService {
     this.cartData.emit(cartData)
   }
 
-  removeToLocalStorage(cartLocalID: CartLocal) {
+  removeToLocalStorage(cartLocalID: CartLocal): void {
     let localCartData = localStorage.getItem('cart_items');
-    if(localCartData) {
+    if (localCartData) {
       let items: CartLocal[] = JSON.parse(localCartData);
       items = items.filter((item: CartLocal) => cartLocalID.id! == item.id);
       localStorage.setItem('cart_items', JSON.stringify(items));
@@ -66,7 +66,7 @@ export class ShoppingCardService {
     }
   }
 
-  async addToOrder(product: Product, quantity: number, userID: string) {
+  async addToOrder(product: Product, quantity: number, userID: string): Promise<void> {
     this.orderCollection.add({
       productData: product,
       quantity: quantity,
@@ -75,29 +75,31 @@ export class ShoppingCardService {
     });
   }
 
-  getOrdersProducts(){
+  getOrdersProducts(): Observable<import("@angular/fire/compat/firestore").DocumentChangeAction<unknown>[]> {
     return this.dbstore.collection('orders').snapshotChanges();
   }
 
-  removeToOrder(productID: string){
+  removeToOrder(productID: string): void {
     this.orderCollection.doc(productID).delete();
   }
 
-  getUserProductOrder(){
+  getUserProductOrder(): void {
     this.auth.onAuthStateChanged((userAuth) => {
       const userIDAuth = userAuth.uid;
       return this.dbstore.collection('orders', (ref) => ref.where('userID', '==', userIDAuth)).snapshotChanges();;
     });
   }
 
-  getOrdersByUser(){
-   return this.dbstore.collection('orders').valueChanges()
+  getOrdersByUser(): Observable<unknown[]> {
+    return this.dbstore.collection('orders').valueChanges()
   }
 
   addToCheckouts = (checkout: CheckoutFirestore) => this.checkoutCollection.add(checkout);
-  addToCheckoutsLocalToFirestore = (checkout: CheckoutLocal) => this.checkoutLocalToFirestoreCollection.add(checkout);
 
-  getCheckouts() {
+  addToCheckoutsLocalToFirestore = (checkoutLoal: CheckoutLocal) =>
+    this.checkoutLocalToFirestoreCollection.add(checkoutLoal);
+
+  getCheckouts(): Observable<import("@angular/fire/compat/firestore").DocumentChangeAction<unknown>[]> {
     return this.dbstore.collection('checkouts').snapshotChanges();
   }
 }

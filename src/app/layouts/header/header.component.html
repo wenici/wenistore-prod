@@ -395,7 +395,7 @@
           <div class="bg-slate-100 rounded-lg">
             <div class="flex items-center space-x-4 relative">
               <div class="flex-shrink-0">
-                  <img class="w-24 h-24 rounded-lg" src="{{ cart.productData.imageURL }}" alt="Neil image">
+                  <img class="w-24 h-24 rounded-lg" src="{{ cart.productData.imageURL[0] }}" alt="Neil image">
               </div>
               <div class="flex-1 min-w-0">
                 <span>{{ cart.createdAt.toDate() | date:'medium' }}</span>
@@ -424,10 +424,9 @@
           <div class="bg-slate-100 rounded-lg">
             <div class="flex items-center space-x-4 relative">
               <div class="flex-shrink-0">
-                  <img class="w-24 h-24 rounded-lg" src="{{ cart.productData.imageURL }}" alt="Neil image">
+                  <img class="w-24 h-24 rounded-lg" src="{{ cart.productData.imageURL[0] }}" alt="Neil image">
               </div>
               <div class="flex-1 min-w-0">
-                <span>{{ cart.productData.name }}</span>
                   <p class="text-sm pt-2 font-medium text-gray-900 truncate dark:text-white">
                     {{ cart.productData.name }}
                   </p>
