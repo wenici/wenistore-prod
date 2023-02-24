@@ -95,7 +95,6 @@ export class HeaderComponent implements OnInit {
         return this.totalPrice = calutPriceTotal;
       })
     })
-
   }
 
   ngOnInit() {
@@ -115,13 +114,13 @@ export class HeaderComponent implements OnInit {
     this.totalPriceLocal = calutPriceTotal;
   }
 
-  onRemoveToOrderLocal(cartLocalID: string): void {
-    this.shopping.removeToLocalStorage(cartLocalID);
-    window.location.reload();
+  onRemoveToOrderLocal(cartLocal: string): void {
+    this.shopping.removeToLocalStorage(cartLocal);
+    // window.location.reload();
   }
 
-  onRemoveToOrder(productID: string){
-    this.shopping.removeToOrder(productID)
+  onRemoveToOrder(product: string){
+    this.shopping.removeToOrder(product)
   }
 
   goToCheckout(){ this.router.navigate(['checkout']) }

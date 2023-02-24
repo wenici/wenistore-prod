@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SecurityContext } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import {FormBuilder, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,7 +14,6 @@ import { Product } from '../../../models/product.model';
 import { ShoppingCardService } from '../../../shared/services/shopping-card.service';
 import { Cart } from 'src/app/models/cart.model';
 import { CartLocal } from '../../../models/cart.model';
-
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -63,6 +63,7 @@ export class CheckoutComponent implements OnInit {
     private _formBuilder: FormBuilder,
     public snack: MatSnackBar,
     public router: Router,
+    private sanitizer: DomSanitizer,
     private auth: AngularFireAuth,
     public authService: AuthService,
     private dbstore: AngularFirestore,
@@ -117,15 +118,26 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {}
 
   async onSubmitWhenUserConnected(){
+
     if(this.twoFormGroup.valid) {
+      
      try {
+
       const userID = (await this.auth.currentUser).uid;
+      const lieuDeLivraison: string = this.twoFormGroup.get('lieuDeLiraison')?.value;
+      const modePayement: string = this.twoFormGroup.get('modePayement')?.value;
+      const typeLivraison: string = this.twoFormGroup.get('typeDelivraison')?.value;
+
+      const sanitizerPayValue: string = this.sanitizer.sanitize(SecurityContext.HTML, modePayement);
+      const sanitizerAddressValue: string = this.sanitizer.sanitize(SecurityContext.HTML, lieuDeLivraison);
+      const sanitizerTypeLivraisonValue: string = this.sanitizer.sanitize(SecurityContext.HTML, typeLivraison);
+
       const checkout: CheckoutFirestore = {
         order: this.cartsUser,
         userID: userID,
-        lieuDeLiraison: this.twoFormGroup.get('lieuDeLiraison')?.value,
-        modePayement: this.twoFormGroup.get('modePayement')?.value,
-        typeDelivraison: this.twoFormGroup.get('typeDelivraison')?.value,
+        lieuDeLiraison: sanitizerAddressValue,
+        modePayement: sanitizerPayValue,
+        typeDelivraison: sanitizerTypeLivraisonValue,
         createdAt: new Date(),
         dateDeLiraison: Date()
       }
@@ -141,7 +153,7 @@ export class CheckoutComponent implements OnInit {
             toast.addEventListener('mouseenter', Swal.stopTimer);
             toast.addEventListener('mouseleave', Swal.resumeTimer);
             },
-          });
+        });
         Toast.fire({
           icon: 'success',
           title: 'Produit enregistré avec succès',
@@ -219,6 +231,7 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
+  
   onGoToShopping(){
     if(this.isAuthenticated) {
       this.onSubmitWhenUserConnected();
