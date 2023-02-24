@@ -115,19 +115,13 @@ export class HeaderComponent implements OnInit {
     this.totalPriceLocal = calutPriceTotal;
   }
 
-  onRemoveToOrderLocal(): void {
-    let localCartData = localStorage.getItem('cart_items');
-    if (localCartData) {
-      let items: CartLocal[] = JSON.parse(localCartData);
-      items = items.filter((item: CartLocal) => this.cartLocal.id! == item.id);
-      localStorage.setItem('cart_items', JSON.stringify(items));
-      this.cartData.emit(items);
-    }
-
+  onRemoveToOrderLocal(cartLocalID: string): void {
+    this.shopping.removeToLocalStorage(cartLocalID);
+    window.location.reload();
   }
 
-  onRemoveToOrder(product: string){
-    this.shopping.removeToOrder(product)
+  onRemoveToOrder(productID: string){
+    this.shopping.removeToOrder(productID)
   }
 
   goToCheckout(){ this.router.navigate(['checkout']) }

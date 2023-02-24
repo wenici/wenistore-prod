@@ -93,7 +93,7 @@ export class AuthService {
         icon: 'success',
         title: 'Compte deconnecté'
       })
-      this.router.navigate(['acceuil'])
+      window.location.reload();
     })
   }
 

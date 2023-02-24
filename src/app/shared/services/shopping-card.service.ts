@@ -56,11 +56,11 @@ export class ShoppingCardService {
     this.cartData.emit(cartData)
   }
 
-  removeToLocalStorage(cartLocalID: CartLocal): void {
+  removeToLocalStorage(cartLocalID: string): void {
     let localCartData = localStorage.getItem('cart_items');
     if (localCartData) {
       let items: CartLocal[] = JSON.parse(localCartData);
-      items = items.filter((item: CartLocal) => cartLocalID.id! == item.id);
+      items = items.filter((item: CartLocal) => cartLocalID! == item.id);
       localStorage.setItem('cart_items', JSON.stringify(items));
       this.cartData.emit(items);
     }

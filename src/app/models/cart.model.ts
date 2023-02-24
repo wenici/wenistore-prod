@@ -6,7 +6,6 @@ export interface Cart {
     createdAt?: any;
     quantity: number;
 }
-
 export interface CartLocal {
     id?: string;
     productData: Product;
