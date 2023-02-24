@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, EventEmitter, NgZone, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
@@ -20,7 +20,8 @@ export class HeaderComponent implements OnInit {
   quantity: number = 0;
   prod: any;
   product: Product ;
-  cart: Cart;
+  cartData = new EventEmitter<CartLocal[] | []>()
+  cartLocal: CartLocal;
   carts!: any;
   cartsUser: Cart[];
   cartsLocal: CartLocal[];
@@ -35,6 +36,7 @@ export class HeaderComponent implements OnInit {
   totalPriceLocal: number;
   userId: any;
   cartItems = 0;
+
 
   constructor(
     public router: Router,
@@ -111,6 +113,17 @@ export class HeaderComponent implements OnInit {
       }
     }, 0)
     this.totalPriceLocal = calutPriceTotal;
+  }
+
+  onRemoveToOrderLocal(): void {
+    let localCartData = localStorage.getItem('cart_items');
+    if (localCartData) {
+      let items: CartLocal[] = JSON.parse(localCartData);
+      items = items.filter((item: CartLocal) => this.cartLocal.id! == item.id);
+      localStorage.setItem('cart_items', JSON.stringify(items));
+      this.cartData.emit(items);
+    }
+
   }
 
   onRemoveToOrder(product: string){
