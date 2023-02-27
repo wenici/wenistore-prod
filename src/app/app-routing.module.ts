@@ -15,6 +15,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { CreateComponent } from './admin/create/create.component';
 
 import { AuthGuardService } from './shared/services/auth/auth-guard.service';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
     path: 'admin/create',
     component: CreateComponent,
     // canActivate: [AuthGuardService]
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent
   },
   {
     path: 'products',

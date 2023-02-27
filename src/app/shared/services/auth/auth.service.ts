@@ -59,6 +59,9 @@ export class AuthService {
         this.connected = true;
         localStorage.setItem('user', JSON.stringify(auth));
       }
+      auth.then(() => {
+        this.router.navigate(['acceuil'])
+      })
     } catch (error) {
       this.connected = false;
       const Toast = Swal.mixin({

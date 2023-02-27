@@ -37,14 +37,12 @@ export class ResetPasswordComponent implements OnInit {
     return this.resetForm.get('email');
   }
 
-
-  async onSubmit():Promise<void>  {
-
-  }
-
-  onResetPasswordEmail() {
+  onResetPasswordEmail(): void {
     const email = this.resetForm.get('email')?.value;
-    this.authService.resetPasswordEmail(email)
+    if(this.isValidForm) {
+      this.authService.resetPasswordEmail(email);
+      this.isValidForm = true;
+    }
   }
 
 }
