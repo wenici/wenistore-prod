@@ -120,7 +120,7 @@ export class CheckoutComponent implements OnInit {
   async onSubmitWhenUserConnected(){
 
     if(this.twoFormGroup.valid) {
-      
+
      try {
 
       const userID = (await this.auth.currentUser).uid;
@@ -139,7 +139,6 @@ export class CheckoutComponent implements OnInit {
         modePayement: sanitizerPayValue,
         typeDelivraison: sanitizerTypeLivraisonValue,
         createdAt: new Date(),
-        dateDeLiraison: Date()
       }
       this.shopping.addToCheckouts(checkout);
       this.onDeleteAllProductsInShoppingCartUser()

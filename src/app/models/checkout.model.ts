@@ -9,7 +9,7 @@ export interface CheckoutFirestore {
   typeDelivraison?: string;
   createdAt?: Date;
   delireryAt?: string;
-  dateDeLiraison: string;
+  dateDeLiraison?: string;
 }
 
 export interface CheckoutLocal {

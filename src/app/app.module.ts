@@ -48,6 +48,8 @@ import { ProductsService } from './shared/services/products.service';
 import { ShoppingCardService } from './shared/services/shopping-card.service';
 
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,8 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
     UserProfilImgComponent,
     AllComponent,
     CreateComponent,
+    VerifyEmailComponent,
+    ResetPasswordComponent,
    ],
    entryComponents: [
     LoginComponent

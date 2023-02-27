@@ -81,7 +81,9 @@ export class DetailsProductComponent implements OnInit {
 
   async onAddToOrder(): Promise<void>{
     const userID = (await this.auth.currentUser).uid;
-    this.shopping.addToOrder(this.product, this.product.quantity, userID)
+    if(this.isAuthenticated) {
+      this.shopping.addToOrder(this.product, this.product.quantity, userID)
+    }
   }
 
   onAddToOrderInLoaclStorage(){

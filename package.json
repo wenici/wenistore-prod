@@ -26,6 +26,7 @@
     "@types/gsap": "^3.0.0",
     "aos": "^2.3.4",
     "boxicons": "^2.1.4",
+    "firebase-functions": "^4.2.1",
     "flowbite": "^1.5.3",
     "gsap": "^3.11.4",
     "jquery": "^3.6.1",

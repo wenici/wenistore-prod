@@ -48,6 +48,10 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
+  resetPasswordEmail(email: string) {
+    return this.afAuth.sendPasswordResetEmail(email)
+  }
+
   loginGoogle() {
     try {
       const auth = this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());

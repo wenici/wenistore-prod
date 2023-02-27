@@ -55,9 +55,7 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('confirmPassword');
   }
 
-  openGmailAuto = () => window.open('https://mail.google.com/', '_bank');
-
-  ngOnInit() {this.titleService.setTitle(this.title)}
+  ngOnInit() { this.titleService.setTitle(this.title) }
 
   async onSubmit() {
     if (this.registerForm.valid) {
@@ -80,8 +78,7 @@ export class RegisterComponent implements OnInit {
           },
         };
          this.userService.newUser(user);
-        //  authResult.user?.sendEmailVerification();
-        // Success message with sweetAlert 2
+         authResult.user?.sendEmailVerification();
         const Toast = Swal.mixin({
           toast: true,
           position: 'top',
@@ -98,7 +95,6 @@ export class RegisterComponent implements OnInit {
           title: 'Compte cré avec succès'
         })
         this.router.navigate(['acceuil']);
-        // this.openGmailAuto();
       } catch (error) {
         // Message error with sweetAlert 2
         const Toast = Swal.mixin({

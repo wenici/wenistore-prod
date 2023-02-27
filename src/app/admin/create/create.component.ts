@@ -139,7 +139,7 @@ export class CreateComponent implements OnInit {
     if (event.target.files) {
       for (let i = 0; i < File.length; i++) {
         const file = event.target.files[i];
-        const filePath = `mes_images/${Date.now()}_${file.name}`;
+        const filePath = `images_wenistore/${Date.now()}_${file.name}`;
         const task = this.storage.upload(filePath, file);
         const uploadTaskSnapshot = await task;
         const url = await uploadTaskSnapshot.ref.getDownloadURL();

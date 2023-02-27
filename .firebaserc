@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "wenistore-4d599"
+    "default": "wenistore-6b6cf",
+    "wenistore": "wenistore-6b6cf"
   }
 }

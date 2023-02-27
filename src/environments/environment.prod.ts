@@ -1,13 +1,13 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyCskQsv4thAeUSc_Cs1NJtJPxhqEdB9eag",
-    authDomain: "wenistore-4d599.firebaseapp.com",
-    databaseURL: "https://wenistore-4d599-default-rtdb.firebaseio.com",
-    projectId: "wenistore-4d599",
-    storageBucket: "wenistore-4d599.appspot.com",
-    messagingSenderId: "395509011157",
-    appId: "1:395509011157:web:397829c65d81dde4abc85c",
-    measurementId: "G-ZHD4E2KP1J"
+    apiKey: "AIzaSyDF3oyhho8IiTPZlxvVXaV2zq43uY55rTY",
+    authDomain: "wenistore-6b6cf.firebaseapp.com",
+    databaseURL: "https://wenistore-6b6cf-default-rtdb.firebaseio.com",
+    projectId: "wenistore-6b6cf",
+    storageBucket: "wenistore-6b6cf.appspot.com",
+    messagingSenderId: "662134971609",
+    appId: "1:662134971609:web:71e47a863ba492685332c8",
+    measurementId: "G-WF5EK6M3H6"
   }
 }

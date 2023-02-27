@@ -18,7 +18,6 @@ export class ProductsService {
       );
     }
 
-
     addProduct = (product: Product) => this.productCollection.add(product);
 
     getProducts() {
