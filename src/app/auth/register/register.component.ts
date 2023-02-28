@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm = this.formBuilder.group(
     {
-      firstName: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.maxLength(10)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -38,9 +38,8 @@ export class RegisterComponent implements OnInit {
   )
 
   get firstName(): AbstractControl | null {
-    return this.registerForm.get('firstName');
-  }
-
+    return this.registerForm.get('name');
+}
   get phone(): AbstractControl | null {
     return this.registerForm.get('phone');
   }
@@ -50,10 +49,6 @@ export class RegisterComponent implements OnInit {
 
   get password(): AbstractControl | null {
     return this.registerForm.get('password');
-  }
-
-  get confirmPassword(): AbstractControl | null {
-    return this.registerForm.get('confirmPassword');
   }
 
   ngOnInit() { this.titleService.setTitle(this.title) }
@@ -66,15 +61,15 @@ export class RegisterComponent implements OnInit {
       try {
         const authResult = await this.authService.createNewUser(email, password);
         const user: User = {
-          id: authResult.user?.uid,
-          nom: this.registerForm.get('firstName')?.value,
-          email: this.registerForm.get('email')?.value,
-          password: this.registerForm.get('password')?.value,
-          phone: this.registerForm.get('phone')?.value,
-          createdAd: new Date(),
+          email: email,
           role: this.role,
+          password: password,
+          createdAd: new Date(),
+          id: authResult.user?.uid,
+          nom: this.registerForm.get('name')?.value,
+          phone: this.registerForm.get('phone')?.value,
         };
-         this.userService.newUser(user);
+        this.userService.saveUserData(user);
         //  authResult.user?.sendEmailVerification();
         const Toast = Swal.mixin({
           toast: true,

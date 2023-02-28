@@ -29,13 +29,8 @@ export class UserService {
     userDoc.collection('shopping').add(productFavorites);
   }
 
-  newUser(user: User): Promise<void> {
-    const defautCentreInteret = {
-      categoryName: 'Vêtements',
-      categoryCouleur: '#ff91f9',
-    };
+  saveUserData(user: User): Promise<void> {
     const userDoc = this.userCollection.doc(user.id);
-    userDoc.collection('centre_interets').add(defautCentreInteret);
     return userDoc.set(user);
   }
 
