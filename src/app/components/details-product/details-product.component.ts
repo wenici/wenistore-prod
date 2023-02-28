@@ -11,7 +11,6 @@ import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/comp
 import Swal from 'sweetalert2';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Cart, CartLocal } from '../../models/cart.model';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-details-product',
@@ -38,7 +37,8 @@ export class DetailsProductComponent implements OnInit {
     private shopping: ShoppingCardService,
     private titleService: Title,
     private auth: AngularFireAuth,
-    private authService: AuthService
+    private authService: AuthService,
+    private dbstore: AngularFirestore
   ) {
     this.shopping.getOrdersProducts().subscribe((data) => {
       this.carts = data.map((e) => {

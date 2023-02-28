@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   isLoggedin: boolean = false;
   userData: any;
   hide = true;
+  role: 'client';
 
   constructor(
     private router: Router,
@@ -71,14 +72,10 @@ export class RegisterComponent implements OnInit {
           password: this.registerForm.get('password')?.value,
           phone: this.registerForm.get('phone')?.value,
           createdAd: new Date(),
-          role: {
-            subscriber: true,
-            client: true,
-            admin: false,
-          },
+          role: this.role,
         };
          this.userService.newUser(user);
-         authResult.user?.sendEmailVerification();
+        //  authResult.user?.sendEmailVerification();
         const Toast = Swal.mixin({
           toast: true,
           position: 'top',

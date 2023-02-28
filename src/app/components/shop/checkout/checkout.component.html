@@ -34,9 +34,7 @@
                               </mat-form-field>
                               <mat-form-field appearance="fill">
                                 <mat-label>Adresse</mat-label>
-                                <input matInput placeholder="Last name, First name" value="{{ formattedaddress }}"
-                                      formControlName="lieuDeLiraison" ngx-google-places-autocomplete [options]="options"
-                                      (onAddressChange)="AddressChange($event)" required>
+                                <input matInput placeholder="Last name, First name" formControlName="lieuDeLiraison" required>
                               </mat-form-field>
                             </div>
                             <div>
@@ -92,9 +90,7 @@
                             </mat-form-field>
                             <mat-form-field appearance="fill">
                               <mat-label>Adresse</mat-label>
-                              <input matInput placeholder="Last name, First name" value="{{ formattedaddress }}"
-                                    formControlName="lieuDeLiraison" ngx-google-places-autocomplete [options]="options"
-                                    (onAddressChange)="AddressChange($event)" required>
+                              <input matInput placeholder="Last name, First name" value="" formControlName="lieuDeLiraison"required>
                             </mat-form-field>
                           </div>
                           <div>

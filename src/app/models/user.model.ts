@@ -1,11 +1,5 @@
 
 
-export interface Roles {
-    subscriber?: boolean;
-    client?: boolean;
-    admin?: boolean;
-}
-
 export interface User {
     id?: string;
     nom?: string;
@@ -14,6 +8,6 @@ export interface User {
     password?: string;
     phone?: number;
     photoURL?: string;
-    role?: Roles;
+    role?: string;
     // emailVerified: string;
 }

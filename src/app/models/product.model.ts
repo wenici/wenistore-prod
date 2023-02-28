@@ -14,5 +14,6 @@ export interface Product {
   quantity?: number;
   isMyProduct?: boolean;
   date?: any;
+  userID?: string;
   // createdAt: Date;
 }

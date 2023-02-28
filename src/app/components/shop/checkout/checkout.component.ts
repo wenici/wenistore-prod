@@ -48,17 +48,6 @@ export class CheckoutComponent implements OnInit {
     modePayement: ['', Validators.required],
   })
 
-  formattedaddress = "";
-  options : Options  = {
-    componentRestrictions: {
-      country: "CI"
-    },
-    bounds: undefined,
-    types: [],
-    fields: [],
-    strictBounds: false,
-    origin: undefined
-  }
   constructor(
     private _formBuilder: FormBuilder,
     public snack: MatSnackBar,
@@ -230,7 +219,7 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  
+
   onGoToShopping(){
     if(this.isAuthenticated) {
       this.onSubmitWhenUserConnected();

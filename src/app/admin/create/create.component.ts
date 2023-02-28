@@ -8,6 +8,7 @@ import {
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-create',
@@ -16,6 +17,7 @@ import Swal from 'sweetalert2';
 })
 export class CreateComponent implements OnInit {
 
+  ID: string;
   isValidForm = false;
   imagesUrl: string[] = [];
   quantity: number = 1;
@@ -29,7 +31,8 @@ export class CreateComponent implements OnInit {
     public productService: ProductsService,
     public dbstore: AngularFirestore,
     public formBuilder: FormBuilder,
-    public router: Router
+    public router: Router,
+    private auth: AngularFireAuth,
   ) {
     this.addProductForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -81,7 +84,11 @@ export class CreateComponent implements OnInit {
 
   onSubmit() {
     if(this.addProductForm.valid) {
+      this.auth.currentUser.then( user => {
+        this.ID = user.uid
+      })
       const product: Product = {
+        userID: this.ID,
         name: this.addProductForm.get('name')?.value,
         price: this.addProductForm.get('price')?.value,
         price_solde: this.addProductForm.get('price_solde')?.value,
