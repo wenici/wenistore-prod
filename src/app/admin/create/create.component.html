@@ -41,6 +41,7 @@
                                   <option value="Supermarché">Supermarché</option>
                                   <option value="Nourriture">Nourriture</option>
                                   <option value="Vêtements">Vêtements</option>
+                                  <option value="Chaussure">Chaussure</option>
                                   <option value="Modehomme">Mode Homme</option>
                                   <option value="Modefemme">Mode Femme</option>
                               </select>
@@ -161,7 +162,7 @@
     </div>
     <div class="image-details">
       <div class="uk-margin imgSelected">
-        <img *ngFor="let imageUrl of imagesUrl" [src]="imageUrl">
+        <img *ngFor="let imageUrl of imagesUrl" [src]="imageUrl" (dblclick)="removeSelectedImage(imageUrl)" class="cursor-pointer">
       </div>
       <div class="image-infos">
         <span class="uk-margin">{{ addProductForm.value.name }}</span>

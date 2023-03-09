@@ -14,9 +14,13 @@ import { LoginComponent } from './auth/login/login.component'
 import { RegisterComponent } from './auth/register/register.component';
 import { CreateComponent } from './admin/create/create.component';
 
-import { AuthGuardService } from './shared/services/auth/auth-guard.service';
-import { AuthIsAdminService } from './shared/services/auth/auth-isAdmin.service';
+import { AuthGuardService } from './shared/guard/auth-guard.service';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { RegisterAdminComponent } from './admin/register-admin/register-admin.component';
+import { RegisterShopComponent } from './admin/register-shop/register-shop.component';
+
+import { AdminGuard } from './shared/guard/admin.guard';
+import { ShopGuard } from './shared/guard/shop.guard';
 
 const routes: Routes = [
   {
@@ -27,7 +31,7 @@ const routes: Routes = [
   {
     path: 'admin/create',
     component: CreateComponent,
-    canActivate: [AuthIsAdminService, AuthGuardService]
+    canActivate: [AuthGuardService, AdminGuard || ShopGuard]
   },
   {
     path: 'reset-password',
@@ -69,6 +73,14 @@ const routes: Routes = [
   {
     path: 'acceuil',
     loadChildren: () => import('./top/top.module').then(m => m.TopModule)
+  },
+  {
+    path: 'admin/register-admin',
+    component: RegisterAdminComponent,
+  },
+  {
+    path: 'auth/register-shop',
+    component: RegisterShopComponent
   },
   {
     path: '**',

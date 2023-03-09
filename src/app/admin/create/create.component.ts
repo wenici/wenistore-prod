@@ -5,7 +5,7 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 import {
   AngularFireStorage,
 } from '@angular/fire/compat/storage';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -22,32 +22,29 @@ export class CreateComponent implements OnInit {
   imagesUrl: string[] = [];
   quantity: number = 1;
   isMyProduct: boolean = false;
-  isInvalid: boolean = true;
-  date = Date;
-  public addProductForm: FormGroup;
+  isInvalidForm = true;
 
   constructor(
-    private storage: AngularFireStorage,
-    public productService: ProductsService,
-    public dbstore: AngularFirestore,
-    public formBuilder: FormBuilder,
     public router: Router,
     private auth: AngularFireAuth,
-  ) {
-    this.addProductForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      price: ['', Validators.required],
-      price_solde: ['', Validators.required],
-      category: ['', Validators.required],
-      imagesUrl: [''],
-      description: [''],
-      fichetech: [''],
-      couleur: [''],
-      taille: [''],
-      marque: [''],
-      numero: [''],
-    });
-  }
+    public dbstore: AngularFirestore,
+    private storage: AngularFireStorage,
+    public productService: ProductsService,
+    private formBuilder: FormBuilder,
+  ) { }
+
+  addProductForm = this.formBuilder.group({
+    name: ['', Validators.required],
+    price: ['', Validators.required],
+    category: ['', Validators.required],
+    description: [''],
+    price_solde: [''],
+    fichetech: [''],
+    couleur: [''],
+    taille: [''],
+    marque: [''],
+    numero: [''],
+  });
 
   ngOnInit(): void {}
 
@@ -82,7 +79,7 @@ export class CreateComponent implements OnInit {
     return this.addProductForm.get('numero');
   }
 
-  onSubmit() {
+  async onSubmit(): Promise<void> {
     if(this.addProductForm.valid) {
       this.auth.currentUser.then( user => {
         this.ID = user.uid
@@ -152,9 +149,19 @@ export class CreateComponent implements OnInit {
         const url = await uploadTaskSnapshot.ref.getDownloadURL();
         this.imagesUrl.push(url);
         this.imagesUrl.length >= 0
-          ? (this.isInvalid = false)
-          : (this.isInvalid = true);
+          ? (this.isInvalidForm = false)
+          : (this.isInvalidForm = true);
       }
     }
+  }
+  removeSelectedImage(imageToRemove: string): void {
+    const resteImages = this.imagesUrl.filter((image) => {
+      return imageToRemove !== image;
+    });
+    this.storage.storage.refFromURL(imageToRemove).delete()
+    this.imagesUrl = resteImages;
+    this.imagesUrl.length > 0
+      ? (this.isInvalidForm = false)
+      : (this.isInvalidForm = true);
   }
 }

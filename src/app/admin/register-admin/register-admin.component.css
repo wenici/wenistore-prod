@@ -1,0 +1,63 @@
+.hide {
+  cursor: pointer;
+}
+
+section.form-content {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+section.form-content>div {
+  background-size: 20px 20px;
+  background-position: 0 0,10px 10px;
+  margin: auto;
+  width: 450px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+section.form-content form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+
+input {
+  color: #000000;
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 1rem;
+  width: 100%;
+}
+
+.links {
+  margin-top: 3rem;;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.uk-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+a {
+  color: #15253e;
+  font-weight: bold;
+}
+
+.uk-card > div {
+  margin-top: 2rem;
+}

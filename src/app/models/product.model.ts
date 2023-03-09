@@ -1,8 +1,8 @@
 export interface Product {
   id?: string;
   name?: string;
-  price?: number;
-  price_solde?: number;
+  price?: any;
+  price_solde?: any;
   description?: string;
   fichetech?: string;
   imageURL?: string[];
@@ -15,5 +15,4 @@ export interface Product {
   isMyProduct?: boolean;
   date?: any;
   userID?: string;
-  // createdAt: Date;
 }

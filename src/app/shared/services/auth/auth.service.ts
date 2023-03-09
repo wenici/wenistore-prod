@@ -7,21 +7,18 @@ import 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 
-import { BehaviorSubject } from 'rxjs';
-import { of } from 'rxjs';
-import  { switchMap, Observable } from 'rxjs';
-import { constants } from 'buffer';
-
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
 
   userRole!: AngularFirestoreCollection<User>;
-
+  dataUser: User;
   connected = false;
   userData: User;
-  user$!: Observable<User>;
+  user$: Observable<User>;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -38,7 +35,15 @@ export class AuthService {
         JSON.parse(localStorage.getItem('user'));
       }
     })
+    this.user$ = this.afAuth.authState.pipe(switchMap(user => {
+      if (user) {
+        return this.dbstore.doc<User>(`users/${user.uid}`).valueChanges();
+      } else {
+        return of(null);
+      }
+    }));
   }
+
 
   createNewUser(email: string, password: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password);
@@ -46,6 +51,11 @@ export class AuthService {
 
   loginUser(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password);
+  }
+
+  // create account for shop
+  createNewUserShop(email: string, password: string) {
+    return this.afAuth.createUserWithEmailAndPassword(email, password);
   }
 
   resetPasswordEmail(email: string) {
@@ -108,6 +118,5 @@ export class AuthService {
     const user = JSON.parse(localStorage.getItem('user')!);
     return user !== null;
   }
-
 
 }

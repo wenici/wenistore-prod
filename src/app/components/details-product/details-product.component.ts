@@ -11,6 +11,8 @@ import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/comp
 import Swal from 'sweetalert2';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Cart, CartLocal } from '../../models/cart.model';
+import { map, take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-details-product',
@@ -24,9 +26,14 @@ export class DetailsProductComponent implements OnInit {
   usersCollection: AngularFirestoreCollection<User>;
   userCollection: AngularFirestoreCollection<User>;
 
+  userData: User[]
   carts: Cart[];
   cartsUser: Cart[];
   cartsLocal: CartLocal[];
+
+  isAdmin: boolean = true;
+  isShop: boolean;
+  isUser: boolean;
 
   removeCart : boolean = false;
 
@@ -56,6 +63,24 @@ export class DetailsProductComponent implements OnInit {
     productId && this.productService.getDetailProduct(productId).subscribe((data) => {
       this.product = data;
     })
+    this.auth.authState.subscribe( user => {
+      const userID = user.uid;
+      const data = this.dbstore.collection('users',
+        (ref) => ref.where('userID', '==', userID).where('role', '==', this.isAdmin)).snapshotChanges()
+        if(data) this.isAdmin = true
+        data.subscribe(adminData => {
+          this.userData = adminData.map((e) => {
+            return {
+              id: e.payload.doc.id,
+              ...(e.payload.doc.data() as User)
+            }
+          })
+        })
+    })
+
+    // this.onAction();
+    // this.offAction();
+
   }
 
   isAuthenticated = () => this.authService.isLoggedin();
@@ -133,5 +158,6 @@ export class DetailsProductComponent implements OnInit {
     }
     console.log(this.product.quantity);
   }
+
 
 }

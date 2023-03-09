@@ -25,12 +25,12 @@ export class UserService {
 
   addToShop(product: Product, user: User){
     const productFavorites = this.userCollection.doc(product.id);
-    const userDoc = this.userCollection.doc(user.id);
+    const userDoc = this.userCollection.doc(user.uid);
     userDoc.collection('shopping').add(productFavorites);
   }
 
-  saveUserData(user: User): Promise<void> {
-    const userDoc = this.userCollection.doc(user.id);
+  saveUserData(user: User){
+    const userDoc = this.userCollection.doc(user.uid);
     return userDoc.set(user);
   }
 

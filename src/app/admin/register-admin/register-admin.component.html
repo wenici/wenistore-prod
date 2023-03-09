@@ -1,0 +1,78 @@
+<section class="form-content">
+  <div class="uk-card uk-card-default uk-card-body">
+    <div>
+      <h2>Créer un compte Admin</h2>
+      <span>Crée-toi un compte et effectue tes achats en toute tranquilité</span>
+    </div>
+    <div>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Nom</mat-label>
+          <input type="text" matInput formControlName="name" placeholder="Jean">
+          <span mat-icon-button matSuffix >
+            <mat-icon>person</mat-icon>
+          </span>
+          <mat-error *ngIf="!registerForm.valid">
+            S'il vous plait, entrez un nom d'au moins 4 caractères
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" placeholder="personnel@gmail.com">
+          <span mat-icon-button matSuffix >
+            <mat-icon>email</mat-icon>
+          </span>
+          <mat-error *ngIf="!registerForm.valid">
+            S'il vous plait, entrez une adresse email valide
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Téléphone</mat-label>
+          <input type="email" matInput formControlName="phone" placeholder="0705040504">
+          <span mat-icon-button matSuffix >
+            <mat-icon>phone</mat-icon>
+          </span>
+          <mat-error *ngIf="!registerForm.valid">
+            S'il vous plait, entrez un numéro valid (10 caractères maximum)
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+          <span mat-icon-button matSuffix (click)="hide = !hide" class="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </span>
+          <mat-error *ngIf="!registerForm.valid">
+            Entrez un mot de passe d'au moins 8 caractères
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="uk-width-1-1">
+          <span *ngIf="!isValidForm">Inscription</span>
+          <lord-icon *ngIf="isValidForm"
+              src="https://cdn.lordicon.com/mwqnntww.json"
+              trigger="loop"
+              colors="primary:#FFFFFF"
+              state="loop"
+              style="width:30px;height:30px">
+          </lord-icon>
+        </button>
+
+        <div class="links">
+          <span>
+            Déja un compte ?
+            <a [routerLink]="['/login']"> Se connecter</a>
+          </span>
+          <span>
+            <a href="#">Mot de passe oublié ?</a>
+          </span>
+        </div>
+
+    </form>
+    </div>
+  </div>
+</section>

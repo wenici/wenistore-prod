@@ -8,19 +8,20 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
+  selector: 'app-register-shop',
+  templateUrl: './register-shop.component.html',
+  styleUrls: ['./register-shop.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterShopComponent implements OnInit {
+
   title = 'Weni Store - Inscription';
   isValidForm = false;
   isLoggedin: boolean = false;
   userData: any;
   hide = true;
-  role: 'client';
+  role: 'shop'
 
-  constructor(
+    constructor(
     private router: Router,
     private titleService: Title,
     private authService: AuthService,
@@ -28,12 +29,15 @@ export class RegisterComponent implements OnInit {
     private formBuilder: UntypedFormBuilder,
   ) {}
 
+
   registerForm = this.formBuilder.group(
     {
       name: ['', [Validators.required, Validators.minLength(3)]],
+      nameShop: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.maxLength(10)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      address: ['', [Validators.required, Validators.minLength(8)]],
     }
   )
 
@@ -46,7 +50,12 @@ export class RegisterComponent implements OnInit {
   get email(): AbstractControl | null {
     return this.registerForm.get('email');
   }
-
+  get nameShop(): AbstractControl | null {
+    return this.registerForm.get('nameShop')
+  }
+  get address(): AbstractControl | null {
+    return this.registerForm.get('address')
+  }
   get password(): AbstractControl | null {
     return this.registerForm.get('password');
   }
@@ -59,18 +68,19 @@ export class RegisterComponent implements OnInit {
       const email = this.registerForm.get('email')?.value;
       const password = this.registerForm.get('password')?.value;
       try {
-        const authResult = await this.authService.createNewUser(email, password);
-        const user: User = {
-          roles: { subscriber: true, admin: false, shop: false },
-          createdAd: new Date(),
-          email: this.registerForm.get('email')?.value,
-          password: this.registerForm.get('password')?.value,
-          uid: authResult.user?.uid,
-          nom: this.registerForm.get('name')?.value,
-          phone: this.registerForm.get('phone')?.value,
+         const authResult = await this.authService.createNewUser(email, password);
+         const user: User = {
+           createdAd: new Date(),
+           uid: authResult.user?.uid,
+           nom: this.registerForm.get('name')?.value,
+           phone: this.registerForm.get('phone')?.value,
+           email: this.registerForm.get('email')?.value,
+           address: this.registerForm.get('address')?.value,
+           nomShop: this.registerForm.get('nameShop')?.value,
+           password: this.registerForm.get('password')?.value,
+           roles: { subscriber: true, admin: false, shop: true },
         };
         this.userService.saveUserData(user);
-        //  authResult.user?.sendEmailVerification();
         const Toast = Swal.mixin({
           toast: true,
           position: 'top',
@@ -88,7 +98,6 @@ export class RegisterComponent implements OnInit {
         })
         this.router.navigate(['acceuil']);
       } catch (error) {
-        // Message error with sweetAlert 2
         const Toast = Swal.mixin({
           toast: true,
           position: 'top',
@@ -104,7 +113,7 @@ export class RegisterComponent implements OnInit {
           icon: 'error',
           title: 'Veillez renseigner correctement les differents s\'il vous plait'
         })
-        this.router.navigate(['register']);
+        this.router.navigate(['auth/register-shop']);
       }
     }
   }

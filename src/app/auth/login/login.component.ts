@@ -7,6 +7,7 @@ import { AbstractControl, UntypedFormBuilder, Validators } from '@angular/forms'
 
 import Swal from 'sweetalert2';
 import { Title } from '@angular/platform-browser';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-login',
@@ -14,12 +15,15 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   hide = true;
   title = 'Weni Store - Connexion';
   isValidForm = false;
   isLoggedin: boolean = false;
+
   constructor(
     public authService: AuthService,
+    public dbstore: AngularFirestore,
     public afAuth: AngularFireAuth,
     private formBuilder: UntypedFormBuilder,
     public router: Router,
@@ -131,6 +135,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle(this.title);
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        const userData = this.dbstore.collection('users').doc(user.uid).snapshotChanges();
+        localStorage.setItem('userData', JSON.stringify(userData));
+      }
+    })
   }
 
 }

@@ -50,6 +50,8 @@ import { ShoppingCardService } from './shared/services/shopping-card.service';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { RegisterShopComponent } from './admin/register-shop/register-shop.component';
+import { RegisterAdminComponent } from './admin/register-admin/register-admin.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,8 @@ import { ResetPasswordComponent } from './auth/reset-password/reset-password.com
     CreateComponent,
     VerifyEmailComponent,
     ResetPasswordComponent,
+    RegisterShopComponent,
+    RegisterAdminComponent,
    ],
    entryComponents: [
     LoginComponent

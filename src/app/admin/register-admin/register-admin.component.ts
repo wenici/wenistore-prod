@@ -6,19 +6,24 @@ import { User } from '../../models/user.model';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import 'firebase/auth';
+import firebase from 'firebase/compat/app';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
+  selector: 'app-register-admin',
+  templateUrl: './register-admin.component.html',
+  styleUrls: ['./register-admin.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterAdminComponent implements OnInit {
   title = 'Weni Store - Inscription';
   isValidForm = false;
   isLoggedin: boolean = false;
   userData: any;
   hide = true;
-  role: 'client';
+  role: 'admin';
+  user: User
 
   constructor(
     private router: Router,
@@ -26,6 +31,8 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private formBuilder: UntypedFormBuilder,
+    private afAuth: AngularFireAuth,
+    public dbstore: AngularFirestore
   ) {}
 
   registerForm = this.formBuilder.group(
@@ -51,7 +58,9 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('password');
   }
 
-  ngOnInit() { this.titleService.setTitle(this.title) }
+  ngOnInit() {
+    this.titleService.setTitle(this.title)
+  }
 
   async onSubmit() {
     if (this.registerForm.valid) {
@@ -59,18 +68,9 @@ export class RegisterComponent implements OnInit {
       const email = this.registerForm.get('email')?.value;
       const password = this.registerForm.get('password')?.value;
       try {
-        const authResult = await this.authService.createNewUser(email, password);
-        const user: User = {
-          roles: { subscriber: true, admin: false, shop: false },
-          createdAd: new Date(),
-          email: this.registerForm.get('email')?.value,
-          password: this.registerForm.get('password')?.value,
-          uid: authResult.user?.uid,
-          nom: this.registerForm.get('name')?.value,
-          phone: this.registerForm.get('phone')?.value,
-        };
-        this.userService.saveUserData(user);
-        //  authResult.user?.sendEmailVerification();
+        this.authService.createNewUserShop(email, password).then((credential) => {
+          this.updateUserDataCredential(credential.user)
+        });
         const Toast = Swal.mixin({
           toast: true,
           position: 'top',
@@ -109,4 +109,17 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  updateUserDataCredential(user: firebase.User) {
+    const userRef: AngularFirestoreDocument<User> = this.dbstore.doc(`users/${user.uid}`);
+    const userData: User = {
+      createdAd: new Date(),
+      uid: user.uid,
+      email: this.registerForm.get('email')?.value,
+      password: this.registerForm.get('password')?.value,
+      nom: this.registerForm.get('name')?.value,
+      phone: this.registerForm.get('phone')?.value,
+      roles: { subscriber: true, admin: true, shop: true },
+    };
+    return userRef.set(userData, { merge: true })
+  }
 }
