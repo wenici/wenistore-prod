@@ -22,6 +22,7 @@ import { RegisterShopComponent } from './admin/register-shop/register-shop.compo
 import { AdminGuard } from './shared/guard/admin.guard';
 import { ShopGuard } from './shared/guard/shop.guard';
 import { AccesNoDediedComponent } from './error/acces-no-dedied/acces-no-dedied.component';
+import { SupermarketComponent } from './top/supermarket/supermarket.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,10 @@ const routes: Routes = [
   {
     path: 'product-details/:productId',
     component: DetailsProductComponent,
+  },
+  {
+    path: 'supermarket',
+    component: SupermarketComponent
   },
   {
     path: 'update/:id',

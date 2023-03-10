@@ -9,13 +9,15 @@ import { TopComponent } from './top.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from '../layouts/footer/footer.component';
 import { FilterProductsComponent } from './filter-products/filter-products.component';
+import { SupermarketComponent } from './supermarket/supermarket.component';
 
 @NgModule({
   declarations: [
     TopComponent,
     SidebarComponent,
     FooterComponent,
-    FilterProductsComponent
+    FilterProductsComponent,
+    SupermarketComponent
   ],
   imports: [
     CommonModule,
