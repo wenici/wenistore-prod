@@ -39,14 +39,13 @@ export class RegisterComponent implements OnInit {
 
   get name(): AbstractControl | null {
     return this.registerForm.get('name');
-}
+  }
   get phone(): AbstractControl | null {
     return this.registerForm.get('phone');
   }
   get email(): AbstractControl | null {
     return this.registerForm.get('email');
   }
-
   get password(): AbstractControl | null {
     return this.registerForm.get('password');
   }
@@ -61,8 +60,8 @@ export class RegisterComponent implements OnInit {
       try {
         const authResult = await this.authService.createNewUser(email, password);
         const user: User = {
-          roles: { subscriber: true, admin: false, shop: false },
           createdAd: new Date(),
+          roles: { subscriber: true, admin: false, shop: false },
           email: this.registerForm.get('email')?.value,
           password: this.registerForm.get('password')?.value,
           uid: authResult.user?.uid,

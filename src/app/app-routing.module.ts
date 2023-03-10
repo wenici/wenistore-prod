@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { NoFoundPageComponent } from './no-found-page/no-found-page.component';
+import { NoFoundPageComponent } from './error/no-found-page/no-found-page.component';
 import { UpdateProductComponent } from './components/update-product/update-product.component';
 import { ProductsComponent } from './components/products/products.component';
 import { DetailsProductComponent } from './components/details-product/details-product.component';
@@ -21,6 +21,7 @@ import { RegisterShopComponent } from './admin/register-shop/register-shop.compo
 
 import { AdminGuard } from './shared/guard/admin.guard';
 import { ShopGuard } from './shared/guard/shop.guard';
+import { AccesNoDediedComponent } from './error/acces-no-dedied/acces-no-dedied.component';
 
 const routes: Routes = [
   {
@@ -81,6 +82,10 @@ const routes: Routes = [
   {
     path: 'auth/register-shop',
     component: RegisterShopComponent
+  },
+  {
+    path: 'error/acces-no-dedied',
+    component: AccesNoDediedComponent
   },
   {
     path: '**',

@@ -21,7 +21,7 @@ export class AdminGuard implements CanActivate {
         map(user => user && user.roles.admin ? true : false),
         tap(isAdmin => {
           if (!isAdmin) {
-            this.router.navigate(['acceuil'])
+            this.router.navigate(['error/acces-no-dedied'])
             console.error('Accès non dédié - Seulement pour les boutiques');
           }
         })

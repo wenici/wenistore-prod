@@ -1,0 +1,35 @@
+
+  h1 {
+  color: red;
+  font-size: 4em;
+  font-family: 'Courier New', Courier, monospace;
+  }
+
+  h6{
+  color: red;
+  text-decoration: underline;
+  }
+
+  section.form-content {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+section.form-content>div {
+  background-size: 20px 20px;
+  background-position: 0 0,10px 10px;
+  margin: auto;
+  width: 450px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+a {
+  background:#15253e;
+  color: #FFFF;
+}

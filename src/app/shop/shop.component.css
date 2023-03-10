@@ -1,0 +1,18 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
+.m {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+nav > div > span *
+{
+  margin-left: 1rem;
+}

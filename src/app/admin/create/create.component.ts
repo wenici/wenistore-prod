@@ -5,7 +5,7 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 import {
   AngularFireStorage,
 } from '@angular/fire/compat/storage';
-import { AbstractControl, FormBuilder, FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -45,6 +45,8 @@ export class CreateComponent implements OnInit {
     marque: [''],
     numero: [''],
   });
+
+
 
   ngOnInit(): void {}
 
@@ -120,6 +122,7 @@ export class CreateComponent implements OnInit {
         title: 'Produit enregistré avec succès',
       });
       } catch (error) {
+        console.log(error);
         const Toast = Swal.mixin({
           toast: true,
           position: 'top',
@@ -144,7 +147,7 @@ export class CreateComponent implements OnInit {
       for (let i = 0; i < File.length; i++) {
         const file = event.target.files[i];
         const filePath = `images_wenistore/${Date.now()}_${file.name}`;
-        const task = this.storage.upload(filePath, file);
+        const task = this.storage.upload(filePath, file, { contentType: '.png,.jpg,.jpeg'});
         const uploadTaskSnapshot = await task;
         const url = await uploadTaskSnapshot.ref.getDownloadURL();
         this.imagesUrl.push(url);

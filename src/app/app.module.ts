@@ -27,7 +27,7 @@ import { DetailsProductComponent } from './components/details-product/details-pr
 import { ProductsComponent } from './components/products/products.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { NoFoundPageComponent } from './no-found-page/no-found-page.component';
+import { NoFoundPageComponent } from './error/no-found-page/no-found-page.component';
 
 import { CreateComponent } from './admin/create/create.component'
 
@@ -35,7 +35,9 @@ import { defineLordIconElement } from 'lord-icon-element';
 import lottie from 'lottie-web';
 import { AuthService } from './shared/services/auth/auth.service';
 
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import{ Ng2SearchPipeModule }from'ng2-search-filter';
+
+import { ShopModule } from './shop/shop.module'
 
 import { MaterialModule } from './layouts/material.module';
 import { ShopComponent } from './components/shop/shop.component';
@@ -47,11 +49,11 @@ import { AllComponent } from './admin/all/all.component';
 import { ProductsService } from './shared/services/products.service';
 import { ShoppingCardService } from './shared/services/shopping-card.service';
 
-import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { RegisterShopComponent } from './admin/register-shop/register-shop.component';
 import { RegisterAdminComponent } from './admin/register-admin/register-admin.component';
+import { AccesNoDediedComponent } from './error/acces-no-dedied/acces-no-dedied.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,7 @@ import { RegisterAdminComponent } from './admin/register-admin/register-admin.co
     ResetPasswordComponent,
     RegisterShopComponent,
     RegisterAdminComponent,
+    AccesNoDediedComponent,
    ],
    entryComponents: [
     LoginComponent
@@ -83,7 +86,7 @@ import { RegisterAdminComponent } from './admin/register-admin/register-admin.co
     FormsModule,
     SwiperModule,
     Ng2SearchPipeModule,
-    GooglePlaceModule,
+    ShopModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     BrowserModule,

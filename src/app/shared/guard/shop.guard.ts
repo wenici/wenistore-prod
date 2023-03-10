@@ -20,7 +20,7 @@ export class ShopGuard implements CanActivate {
         map(user => user && user.roles.admin ? true : false),
         tap(isShop => {
           if (!isShop) {
-            this.router.navigate(['acceuil'])
+            this.router.navigate(['error/acces-no-dedied'])
             console.error('Accès non dédié - Seulement pour les administrateurs');
           }
         })
