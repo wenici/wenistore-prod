@@ -12,7 +12,16 @@ nav {
   padding-right: 1em;
 }
 
+a {
+  text-decoration: none;
+}
+
 nav > div > span *
 {
   margin-left: 1rem;
+  font-weight: bold;
+  color: #FFF;
+  background-color: #01BCBD;
+  padding: 0.5rem;
+  border-radius: 0.3em;
 }

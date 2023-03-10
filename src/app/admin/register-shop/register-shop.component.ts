@@ -96,7 +96,7 @@ export class RegisterShopComponent implements OnInit {
           icon: 'success',
           title: 'Compte cré avec succès'
         })
-        this.router.navigate(['acceuil']);
+        this.router.navigate(['shop-page/products']);
       } catch (error) {
         const Toast = Swal.mixin({
           toast: true,

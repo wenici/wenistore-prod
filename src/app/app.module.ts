@@ -37,7 +37,7 @@ import { AuthService } from './shared/services/auth/auth.service';
 
 import{ Ng2SearchPipeModule }from'ng2-search-filter';
 
-import { ShopModule } from './shop/shop.module'
+import { ShopModule } from './shop/shop.module';
 
 import { MaterialModule } from './layouts/material.module';
 import { ShopComponent } from './components/shop/shop.component';

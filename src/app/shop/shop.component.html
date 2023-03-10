@@ -1,16 +1,33 @@
 <div class="uk-container">
   <nav>
     <h1>Gestion des products</h1>
-    <span>
+    <a routerLink="/admin/create">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg> Ajouter un produit
-     </span>
+    </a>
     <div>
-      <span><a href="">Produits</a></span>
-      <span><a href="">Au panier</a></span>
-      <span><a href="">Acheté(s)</a></span>
-
+      <span class="relative"><a routerLink="/shop-page/products">Produits</a>
+        <div
+        class="inline-flex count-nbre absolute -top-2 -right-2 justify-center items-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white dark:border-gray-900"
+        >
+        {{ allProductUser?.length }}
+        </div>
+      </span>
+      <span class="relative"><a routerLink="/shop-page/in-cart">Au panier</a>
+        <div
+        class="inline-flex count-nbre absolute -top-2 -right-2 justify-center items-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white dark:border-gray-900"
+        >
+        {{ inCartProductUser?.length }}
+        </div>
+      </span>
+      <span class="relative"><a routerLink="/shop-page/succes">Acheté(s)</a>
+        <div
+        class="inline-flex count-nbre absolute -top-2 -right-2 justify-center items-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white dark:border-gray-900"
+        >
+        {{ checkoutsProductUser?.length }}
+        </div>
+      </span>
     </div>
   </nav>
   <router-outlet class="m"></router-outlet>
