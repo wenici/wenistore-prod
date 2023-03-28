@@ -1,0 +1,26 @@
+<div class="uk-container">
+  <breadcrumb #parent>
+    <ol>
+      <ng-template ngFor let-route [ngForOf]=" parent.breadcrumbs">
+        <li *ngIf="!route.terminal" class="inline-flex items-center">
+          <a [routerLink]="[route.url]">{{ route.displayName }}</a>
+        </li>
+        <li *ngIf="route.terminal" data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+          {{ route.displayName }} >
+        </li>
+      </ng-template>
+    </ol>
+  </breadcrumb>
+
+  <div class="uk-grid px-4 uk-margin-large-top uk-margin-large-bottom">
+
+    <div class="uk-width-1-3 uk uk-visible@s">
+
+    </div>
+    <div class="uk-width-2-3@s">
+      <app-products></app-products>
+    </div>
+
+  </div>
+
+</div>

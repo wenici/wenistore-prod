@@ -9,10 +9,11 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { ShoppingCardService } from '../../shared/services/shopping-card.service'
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/compat/firestore';
 import Swal from 'sweetalert2';
+
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Cart, CartLocal } from '../../models/cart.model';
-import { map, take } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+
+import { BreadcrumbService, Breadcrumb } from 'angular-crumbs';
 
 @Component({
   selector: 'app-details-product',
@@ -45,7 +46,8 @@ export class DetailsProductComponent implements OnInit {
     private titleService: Title,
     private auth: AngularFireAuth,
     private authService: AuthService,
-    private dbstore: AngularFirestore
+    private dbstore: AngularFirestore,
+    private breadcrumb: BreadcrumbService
   ) {
     this.shopping.getOrdersProducts().subscribe((data) => {
       this.carts = data.map((e) => {
@@ -58,6 +60,9 @@ export class DetailsProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.breadcrumb.breadcrumbChanged.subscribe( crumbs => {
+      this.titleService.setTitle(this.createTitle(crumbs));
+    })
     this.titleService.setTitle(this.title);
     let productId= this.route.snapshot.paramMap.get('productId');
     productId && this.productService.getDetailProduct(productId).subscribe((data) => {
@@ -77,10 +82,40 @@ export class DetailsProductComponent implements OnInit {
           })
         })
     })
+    this.goToCategory()
+  }
 
-    // this.onAction();
-    // this.offAction();
+  // <option value="Informatique">Informatique</option>
+  // <option value="Téléphone">Téléphone</option>
+  // <option value="Pharmacie">Pharmacie</option>
+  // <option value="Sport">Sport</option>
+  // <option value="Supermarché">Supermarché</option>
+  // <option value="Nourriture">Nourriture</option>
+  // <option value="Vêtements">Vêtements</option>
+  // <option value="Chaussure">Chaussure</option>
+  // <option value="Modehomme">Mode Homme</option>
+  // <option value="Modefemme">Mode Femme</option>
 
+  goToCategory(): void {
+    const CATEGORY = this.product.category;
+    if(CATEGORY === 'Téléphone') { this.router.navigate(['filter-products/phones']); }
+    else if(CATEGORY === 'Vêtements') { this.router.navigate(['filter-products/vetements'])}
+    // console.log(CATEGORY);
+
+  }
+
+  private createTitle(routesCollection: Breadcrumb[])  {
+    const title = 'Filtrage de produits';
+    const titles = routesCollection.filter((route) => route.displayName)
+    if(!titles.length) { return title }
+    const routeTitle = this.titlesRoutes(titles);
+    return `${routeTitle} ${title}`
+  }
+
+  private titlesRoutes(titles: any[]) {
+    return titles.reduce((prev, curr) => {
+      return `${curr.displayName} - ${prev}`;
+    }, '');
   }
 
   isAuthenticated = () => this.authService.isLoggedin();
@@ -158,6 +193,4 @@ export class DetailsProductComponent implements OnInit {
     }
     console.log(this.product.quantity);
   }
-
-
 }

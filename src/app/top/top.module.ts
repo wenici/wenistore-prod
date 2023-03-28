@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MaterialModule } from '../layouts/material.module';
-
+import { BreadcrumbModule } from 'angular-crumbs';
 
 import { TopRoutingModule } from './top-routing.module';
 import { TopComponent } from './top.component';
@@ -22,7 +22,8 @@ import { SupermarketComponent } from './supermarket/supermarket.component';
   imports: [
     CommonModule,
     TopRoutingModule,
-    MaterialModule
+    MaterialModule,
+    BreadcrumbModule
   ],
   exports: [
     TopComponent,

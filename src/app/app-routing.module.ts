@@ -28,12 +28,13 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'acceuil',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    data: { breadcrumb: 'Acceuil' }
   },
   {
     path: 'admin/create',
     component: CreateComponent,
-    canActivate: [AuthGuardService, AdminGuard || ShopGuard]
+    canActivate: [AuthGuardService || AdminGuard || ShopGuard]
   },
   {
     path: 'reset-password',
@@ -42,10 +43,12 @@ const routes: Routes = [
   {
     path: 'products',
     component: ProductsComponent,
+    data: { breadcrumb: 'Produits' }
   },
   {
     path: 'product-details/:productId',
     component: DetailsProductComponent,
+    data: { breadcrumb: 'Détails' }
   },
   {
     path: 'supermarket',

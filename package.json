@@ -24,6 +24,7 @@
     "@kolkov/angular-editor": "^3.0.0-beta.0",
     "@types/googlemaps": "^3.43.3",
     "@types/gsap": "^3.0.0",
+    "angular-crumbs": "^3.0.1",
     "aos": "^2.3.4",
     "boxicons": "^2.1.4",
     "firebase-functions": "^4.2.1",

@@ -24,14 +24,6 @@ export class ProductsService {
       return this.dbstore.collection('products').snapshotChanges();
     }
 
-    getByPriceProducts() {
-      return this.dbstore.collection('products', (ref) => ref.orderBy('price', 'desc')).snapshotChanges();
-    }
-
-    getByCategoryProducts() {
-      return this.dbstore.collection('products', (ref) => ref.orderBy('category', 'desc')).snapshotChanges();
-    }
-
     getDetailProduct(productId: string): Observable<any> {
       return this.productCollection.doc(productId).valueChanges();
     }

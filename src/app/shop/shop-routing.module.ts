@@ -15,9 +15,9 @@ const routes: Routes = [
     component: ShopPageComponent,
     canActivate: [AdminGuard || ShopGuard],
     children: [
-      { path: 'products', component: ProductsComponent },
-      { path: 'in-cart', component: InCartComponent },
-      { path: 'succes', component: SuccesComponent }
+      { path: 'products', component: ProductsComponent, data: { breadcrumb: 'Produits' } },
+      { path: 'in-cart', component: InCartComponent , data: { breacrumb: 'Au panier' } },
+      { path: 'succes', component: SuccesComponent, data: { breadcrumb: 'Succès' } }
     ]
   }
 ];

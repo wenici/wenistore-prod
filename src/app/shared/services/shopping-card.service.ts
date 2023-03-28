@@ -12,16 +12,16 @@ import { Product } from 'src/app/models/product.model';
 import { Cart, CartLocal } from 'src/app/models/cart.model';
 import { Router } from '@angular/router';
 import { CheckoutFirestore, CheckoutLocal } from '../../models/checkout.model';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable, BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingCardService {
+
   productsCollection: AngularFirestoreCollection<Product>;
   userCollection: AngularFirestoreCollection<User>;
   productCollectionGroup: AngularFirestoreCollectionGroup<Product>
   orderCollection: AngularFirestoreCollection<Cart>;
-  orderLocalCollection: AngularFirestoreCollection<CartLocal>;
   cartCollection: AngularFirestoreCollection<Cart>;
   checkoutCollection: AngularFirestoreCollection<CheckoutFirestore>;
   checkoutLocalToFirestoreCollection: AngularFirestoreCollection<CheckoutLocal>;

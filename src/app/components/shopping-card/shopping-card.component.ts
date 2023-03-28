@@ -26,16 +26,8 @@ export class ShoppingCardComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.titleService.setTitle(this.title);
-    this.shopCartService.getItems().subscribe((res) => {
-      this.shopping = res.map((e) => {
-        return {
-          id: e.payload.doc.id,
-          ...(e.payload.doc.data() as Cart),
-        };
-      });
-    });
   }
 
   goToDetailsProduct(productId?: string): void {
@@ -72,5 +64,5 @@ export class ShoppingCardComponent implements OnInit {
      });
     console.log(productId);
   }
-  
+
 }
