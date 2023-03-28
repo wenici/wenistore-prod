@@ -54,6 +54,8 @@ import { RegisterShopComponent } from './admin/register-shop/register-shop.compo
 import { RegisterAdminComponent } from './admin/register-admin/register-admin.component';
 import { AccesNoDediedComponent } from './error/acces-no-dedied/acces-no-dedied.component';
 
+import { FilterPipe } from './filter.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,8 +86,8 @@ import { AccesNoDediedComponent } from './error/acces-no-dedied/acces-no-dedied.
     TopModule,
     FormsModule,
     SwiperModule,
-    Ng2SearchPipeModule,
     ShopModule,
+    Ng2SearchPipeModule,
     FilterProductsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,

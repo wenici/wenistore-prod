@@ -23,6 +23,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatRadioModule} from '@angular/material/radio';
 import { NgModule } from '@angular/core';
+import { FilterPipe } from '../filter.pipe';
 
 const materials = [
   MatButtonModule,
@@ -52,7 +53,9 @@ const materials = [
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    FilterPipe
+  ],
   imports: [materials],
   exports: [materials],
 })

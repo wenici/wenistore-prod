@@ -8,6 +8,33 @@
     </a>
 
     <div class="menu">
+
+      <div class="flex items-center" id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification">
+        <label for="voice-search" class="sr-only">Search</label>
+        <div class="relative w-full">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg aria-hidden="true" class="w-4 h-4 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+            </div>
+            <input [(ngModel)]="filterString" name="filterTerm" type="text" id="voice-search" class="border uk-form-width-large border-gray-300 text-gray-900 text-sm rounded-md focus:ring-gray-200 focus:border-gray-200 block w-full pl-10 p-2  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Recherche un produit, une marque ou une catégorie..." required>
+            <div id="dropdownNotification" class="z-20 hidden w-full max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-800 dark:divide-gray-700" aria-labelledby="dropdownNotificationButton">
+              <div class="divide-y divide-gray-100 dark:divide-gray-700" *ngFor="let product of products | filter: filterString">
+                <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <div class="flex-shrink-0">
+                    <img class="rounded-full w-11 h-11" [src]="product.imageURL[0]" alt="Bonnie image">
+                  </div>
+                  <div class="w-full pl-3">
+                      <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">
+                        <span class="font-semibold text-gray-900 dark:text-white">Bonnie Green</span> and
+                        <span class="font-medium text-gray-900 dark:text-white">141 others</span>
+                        love your story. See it and view more stories.
+                      </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+      </div>
+
       <div class="connect-block blox" routerLink="login" *ngIf="!isAuthenticated()">
         <button
           type="submit"
@@ -55,7 +82,6 @@
           <i class="bx bx-chevron-down"></i>
         </button>
       </div>
-
       <!-- number of proucts in user shopping cart  -->
       <div *ngIf="isAuthenticated()" class="panier-block blox" data-drawer-target="drawer-right-example" data-drawer-show="drawer-right-example" data-drawer-placement="right" aria-controls="drawer-right-example">
         <a
@@ -177,7 +203,11 @@
       </div>
     </div>
   </nav>
-  <!-- Dropdown menu -->
+
+</div>
+
+
+<!-- Dropdown menu -->
 <div id="dropdownInformation" *ngIf="isAuthenticated()" class="z-10 hidden w-48 bg-white rounded shadow dark:bg-gray-700">
   <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownBgHoverButton">
     <li>
@@ -254,8 +284,22 @@
   </ul>
 </div>
 
+<!-- sreach dropdown -->
+<!-- <div id="dropdownNotification" class="z-20 hidden w-full max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-800 dark:divide-gray-700" aria-labelledby="dropdownNotificationButton">
+  <div class="divide-y divide-gray-100 dark:divide-gray-700">
+    <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
+      <div class="flex-shrink-0">
+        <img class="rounded-full w-11 h-11" src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="Bonnie image">
+      </div>
+      <div class="w-full pl-3">
+          <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400"><span class="font-semibold text-gray-900 dark:text-white">Bonnie Green</span> and <span class="font-medium text-gray-900 dark:text-white">141 others</span> love your story. See it and view more stories.</div>
+      </div>
+    </a>
+  </div>
+</div> -->
 
-</div>
+
+
 
 <!-- drawer component -->
 <div

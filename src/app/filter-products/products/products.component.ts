@@ -11,7 +11,6 @@ import { ShoppingCardService } from 'src/app/shared/services/shopping-card.servi
 })
 export class ProductsComponent implements OnInit {
   products!: Product[];
-  prods!: Product[];
   quantity: number = 0;
 
   constructor(

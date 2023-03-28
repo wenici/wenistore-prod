@@ -36,6 +36,9 @@ export class HeaderComponent implements OnInit {
   totalPriceLocal: number;
   userId: any;
   cartItems = 0;
+  filterTerm!: string;
+  filterString!: string;
+  products!: Product[];
 
 
   constructor(
@@ -112,6 +115,14 @@ export class HeaderComponent implements OnInit {
       }
     }, 0)
     this.totalPriceLocal = calutPriceTotal;
+    this.productService.getProducts().subscribe((res) => {
+      this.products = res.map((e) => {
+        return {
+          id: e.payload.doc.id,
+          ...(e.payload.doc.data() as Product),
+        };
+      });
+    });
   }
 
   onRemoveToOrderLocal(cartLocal: string): void {
