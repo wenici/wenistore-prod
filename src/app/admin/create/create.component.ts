@@ -88,6 +88,7 @@ export class CreateComponent implements OnInit {
       })
       const product: Product = {
         userID: this.ID,
+        id: this.dbstore.createId(),
         name: this.addProductForm.get('name')?.value,
         price: this.addProductForm.get('price')?.value,
         price_solde: this.addProductForm.get('price_solde')?.value,

@@ -76,15 +76,11 @@
               </div>
               <hr class="uk-divider-icon">
               <div >
-                <button *ngIf="isAuthenticated()" class="uk-button uk-button-default uk-form-width-medium" (click)="onAddToShoppingCart()">
+                <button class="uk-button uk-button-default uk-form-width-medium" (click)="addToCart()">
                   <i class='bx bxs-cart-add'></i>
-                  J'achète le produit USER ADD
+                  J'achète le produit
                 </button>
               </div>
-              <button *ngIf="!isAuthenticated()" class="uk-button uk-button-default uk-form-width-medium" (click)="onAddToOrderInLoaclStorage()">
-                <i class='bx bxs-cart-add'></i>
-                J'achète le produit ADD LOCAL
-              </button>
           </div>
           </div>
         </div>

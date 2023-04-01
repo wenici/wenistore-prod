@@ -104,6 +104,10 @@ export class DetailsProductComponent implements OnInit {
 
   }
 
+  addToCart(){
+    this.shopping.adddItem(this.product)
+  }
+
   private createTitle(routesCollection: Breadcrumb[])  {
     const title = 'Filtrage de produits';
     const titles = routesCollection.filter((route) => route.displayName)

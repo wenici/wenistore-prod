@@ -54,8 +54,6 @@ import { RegisterShopComponent } from './admin/register-shop/register-shop.compo
 import { RegisterAdminComponent } from './admin/register-admin/register-admin.component';
 import { AccesNoDediedComponent } from './error/acces-no-dedied/acces-no-dedied.component';
 
-import { FilterPipe } from './filter.pipe';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,23 +82,23 @@ import { FilterPipe } from './filter.pipe';
   ],
   imports: [
     TopModule,
+    ShopModule,
     FormsModule,
     SwiperModule,
-    ShopModule,
-    Ng2SearchPipeModule,
-    FilterProductsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    BreadcrumbModule,
     BrowserModule,
     MaterialModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    BreadcrumbModule,
+    Ng2SearchPipeModule,
+    ReactiveFormsModule,
+    FilterProductsModule,
+    BrowserAnimationsModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
     AngularFireAuthGuardModule,
     AngularFirestoreModule.enablePersistence(),
-    AngularFireDatabaseModule,
-    AngularFireStorageModule
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [ Title,
     { provide: LOCALE_ID, useValue: 'fr', },

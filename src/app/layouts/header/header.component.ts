@@ -9,12 +9,13 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreCollectio
 import { User } from 'src/app/models/user.model';
 import { Cart, CartLocal } from 'src/app/models/cart.model';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import Swal from 'sweetalert2';
+import { FilterPipe } from '../../filter.pipe';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
+  providers: [ FilterPipe ]
 })
 export class HeaderComponent implements OnInit {
   quantity: number = 0;
@@ -39,7 +40,6 @@ export class HeaderComponent implements OnInit {
   filterTerm!: string;
   filterString!: string;
   products!: Product[];
-
 
   constructor(
     public router: Router,

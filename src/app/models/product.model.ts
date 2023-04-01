@@ -1,5 +1,5 @@
 export interface Product {
-  id?: string;
+  id: string;
   name?: string;
   price?: any;
   price_solde?: any;
@@ -15,4 +15,4 @@ export interface Product {
   isMyProduct?: boolean;
   date?: any;
   userID?: string;
-}
+}        

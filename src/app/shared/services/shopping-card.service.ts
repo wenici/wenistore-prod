@@ -30,7 +30,10 @@ export class ShoppingCardService {
   ordersLocal: CartLocal;
   orders: Cart;
   checkout: CheckoutFirestore;
-  cartData = new EventEmitter<CartLocal[] | []>()
+  cartData = new EventEmitter<CartLocal[] | []>();
+  cartItems = [];
+  numOfItems = new BehaviorSubject([])
+
 
   constructor(
     private readonly dbstore: AngularFirestore,
@@ -101,5 +104,19 @@ export class ShoppingCardService {
 
   getCheckouts(): Observable<import("@angular/fire/compat/firestore").DocumentChangeAction<unknown>[]> {
     return this.dbstore.collection('checkouts').snapshotChanges();
+  }
+
+  adddItem(product: Product) {
+    const productExist = this.cartItems.find((item)=> {
+      return item.id === product.id
+    })
+    if(productExist) {
+      product.quantity++;
+    } else {
+      this.cartItems.push(product);
+      this.numOfItems.next((this.cartItems))
+      console.log(this.cartItems);
+
+    }
   }
 }
