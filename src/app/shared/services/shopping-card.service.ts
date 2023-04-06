@@ -111,7 +111,9 @@ export class ShoppingCardService {
       return item.id === product.id
     })
     if(productExist) {
-      product.quantity++;
+      const update = product.quantity++;
+      this.cartItems.push(update);
+      this.numOfItems.next((this.cartItems))
     } else {
       this.cartItems.push(product);
       this.numOfItems.next((this.cartItems))
